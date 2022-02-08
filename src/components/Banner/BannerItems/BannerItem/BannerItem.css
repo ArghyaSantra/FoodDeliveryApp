@@ -1,0 +1,34 @@
+.banneritem {
+  width: 300px;
+  height: 275px;
+  margin: 30px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.banneritem:hover {
+  transform: scale(1.05);
+  transition: all ease-out 0.5s;
+}
+
+.banner-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-text {
+  color: white;
+  font-weight: bolder;
+  font-size: larger;
+  margin-left: 10px;
+  margin-top: 180px;
+}
+
+.banner-underline {
+  color: white;
+  font-weight: bolder;
+  font-size: small;
+  margin-left: 10px;
+  text-align: left;
+}

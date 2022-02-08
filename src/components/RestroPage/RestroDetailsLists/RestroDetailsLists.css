@@ -1,0 +1,30 @@
+.restrolists {
+  display: flex;
+  margin: 0px 0px;
+}
+
+.restrolists-left {
+  flex: 1;
+  background-color: white;
+}
+
+.restrolists-main {
+  flex: 1;
+  background-color: white;
+}
+
+.restrolists-right {
+  flex: 1;
+  background-color: white;
+}
+
+.search-and-filter {
+  display: flex;
+  align-items: center;
+  margin: 20px 0px;
+  justify-content: center;
+}
+
+.search {
+  margin-right: 25px;
+}
