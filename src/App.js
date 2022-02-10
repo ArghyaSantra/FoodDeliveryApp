@@ -39,6 +39,7 @@ class App extends Component {
           </>
         )}
         {this.state.restroClickedFlag && <RestroPage />}
+        {/*Comments*/}
       </div>
     );
   }
