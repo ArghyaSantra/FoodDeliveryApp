@@ -1,15 +1,12 @@
 import React from "react";
 import "./Cart.css";
 import Button from "@material-ui/core/Button";
+import { filteredData } from "./index";
 
 function Cart({ cartDetails, ItemCount, checkoutClicked }) {
-  console.log("cartDetails" + JSON.stringify(cartDetails));
-  let total = 0;
+  //let total = 0;
 
-  let finalCartDetails = cartDetails.filter((detail, id) => id % 2 == 0);
-  finalCartDetails.forEach((dishes) => {
-    total += parseFloat(dishes.Price.substring(1));
-  });
+  let [finalCartDetails, total] = filteredData(cartDetails);
   return (
     <div className="cart">
       <h1>Cart</h1>

@@ -13,7 +13,6 @@ class RestroDetailsLists extends Component {
   constructor(props) {
     super(props);
     this.restroDishes = this.props.restroDishes;
-    //console.log("this.restroDishes=>" + JSON.stringify(this.restroDishes));
     this.state = {
       cart: [],
       ItemCount: 0,
@@ -93,44 +92,6 @@ class RestroDetailsLists extends Component {
     };
   }
 
-  searchFunctionality = (searchTxt) => {
-    const RestroDishes = this.restroDishes;
-    //const RestroDishes = this.state.restro_dishes;
-    console.log("RestroDishes->" + JSON.stringify(this.state.restro_dishes));
-    let searchDishes = RestroDishes.filter((dish) => {
-      return dish.details.Name.toLowerCase().includes(searchTxt.toLowerCase());
-    });
-    console.log("searchFunctionality");
-    console.log(searchDishes);
-    this.props.searchFunctionality(searchDishes);
-    // this.setState({ ...this.state, restro_dishes: searchDishes });
-  };
-
-  filterFunctionality = (choice) => {
-    const RestroDishes = this.restroDishes;
-    //const RestroDishes = this.state.restro_dishes;
-    //console.log("RestroDishes->" + JSON.stringify(RestroDishes));
-    let searchDishes = RestroDishes; //i
-    if (choice) {
-      searchDishes = RestroDishes.filter((dish) => {
-        return dish.details.Choice.toLowerCase() === "veg";
-      });
-    }
-    console.log("filterFunctionality");
-    this.setState({ ...this.state, restro_dishes: searchDishes });
-  };
-
-  dishClicked = ([dishdetails, ItemCount]) => {
-    this.setState({ ItemCount: ItemCount });
-    console.log("this.state.cart12345=>" + JSON.stringify(this.state.cart));
-    this.setState((state) => {
-      let updatedCart = state.cart;
-      updatedCart.push(dishdetails);
-      console.log("updatedCart:" + JSON.stringify(updatedCart));
-      return { ...this.state, cart: updatedCart };
-    });
-  };
-
   checkoutClicked = () => {
     this.setState({ ...this.state, checkoutClick: true });
   };
@@ -141,56 +102,47 @@ class RestroDetailsLists extends Component {
       "in Cart, this.state.cart=>" + JSON.stringify(this.props.restroDishes)
     );
     return (
-      <>
-        {!this.state.checkoutClick && (
-          <div className="restrolists">
-            <div className="restrolists-left">Left-section</div>
-            <div className="restrolists-main">
-              <div className="search-and-filter">
-                <div className="search">
-                  <TextField
-                    id="outlined-basic"
-                    label="Search..."
-                    variant="outlined"
-                    onChange={(event) =>
-                      this.searchFunctionality(event.target.value)
-                    }
-                  />
-                </div>
-                <Checkbox
-                  color="primary"
-                  inputProps={{ "aria-label": "secondary checkbox" }}
-                  onChange={(event) => {
-                    this.filterFunctionality(event.target.checked);
-                    // return event.target.value
-                  }}
-                />
-                Veg Only
-              </div>
-              {_.map(this.props.restroDishes, (dish) => {
-                return (
-                  <RestroDetailList
-                    key={dish.id}
-                    details={dish.details}
-                    dishClicked={this.dishClicked}
-                  />
-                );
-              })}
-            </div>
-            <div className="restrolists-right">
-              <Cart
-                cartDetails={this.state.cart}
-                checkoutClicked={this.checkoutClicked}
+      <div className="restrolists">
+        <div className="restrolists-left">Left-section</div>
+        <div className="restrolists-main">
+          <div className="search-and-filter">
+            <div className="search">
+              <TextField
+                id="outlined-basic"
+                label="Search..."
+                variant="outlined"
+                onChange={(event) =>
+                  this.props.searchFunctionality(event.target.value)
+                }
               />
             </div>
+            <Checkbox
+              color="primary"
+              inputProps={{ "aria-label": "secondary checkbox" }}
+              onChange={(event) => {
+                this.props.filterFunctionality(event.target.checked);
+                // return event.target.value
+              }}
+            />
+            Veg Only
           </div>
-        )}
-        {this.state.checkoutClick && (
-          <div className="checkout">
-            <Checkout cartDetails={this.state.cart} />
-          </div>
-        )}
-      </>
+          {_.map(this.props.restroDishes, (dish) => {
+            return (
+              <RestroDetailList
+                key={dish.id}
+                details={dish.details}
+                dishClicked={this.props.dishClicked}
+              />
+            );
+          })}
+        </div>
+        <div className="restrolists-right">
+          <Cart
+            cartDetails={this.props.cartDetails}
+            checkoutClicked={this.props.checkoutClicked}
+          />
+        </div>
+      </div>
     );
   }
 }
