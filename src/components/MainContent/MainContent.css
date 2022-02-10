@@ -1,0 +1,35 @@
+.maincontent {
+  display: flex;
+}
+
+.highlights {
+  display: flex;
+  flex: 1;
+  margin-left: 100px;
+  background-color: rgb(247, 243, 243);
+  justify-content: center;
+}
+
+.restro-lists {
+  flex: 2;
+  background-color: orange;
+  margin-right: 100px;
+}
+
+.more-options {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 40px;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.more-options:hover {
+  transform: scale(1.02);
+  transition: all 0.3s;
+}
+
+.arrow-right {
+  padding-top: 7.5px !important;
+  padding-left: 5px !important;
+}

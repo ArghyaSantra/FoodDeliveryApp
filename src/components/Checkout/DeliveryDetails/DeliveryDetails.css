@@ -1,0 +1,12 @@
+.delivery-details-parent {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 400px;
+  justify-content: space-evenly;
+}
+
+.checkout-btn-group {
+  display: flex;
+  justify-content: space-around;
+}

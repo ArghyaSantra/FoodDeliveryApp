@@ -1,0 +1,58 @@
+.restroitem-parent {
+  height: 350px;
+  width: 275px;
+  background-color: white;
+  margin: 20px 10px;
+}
+
+.restroitem-parent:hover {
+  transform: scale(1.05);
+  transition: all ease-out 0.5s;
+  box-shadow: 1px 1px 8px 10px #e0dddd;
+}
+
+.restroitem-details {
+  margin: 15px 15px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.restro-pic {
+  height: 50%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.restro-name {
+  text-align: left;
+  justify-self: center;
+  font-size: medium;
+}
+
+.cuisine {
+  text-align: left;
+  font-size: smaller;
+  color: gray;
+}
+
+.rating-and-eta {
+  display: flex;
+  justify-content: space-between;
+  font-size: smaller;
+}
+
+.star-rating {
+  font-size: 10px !important;
+  margin-right: 5px !important;
+}
+
+.offers {
+  color: brown;
+}
+
+.quick-view {
+  color: lightskyblue;
+}

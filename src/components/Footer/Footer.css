@@ -1,0 +1,39 @@
+.footer-parent {
+  display: flex;
+  height: 200px;
+  align-items: center;
+  background-color: black;
+  margin: 0 100px;
+}
+
+.support-team-info {
+  color: white;
+  padding-left: 100px;
+  flex: 1;
+  text-align: left;
+}
+
+.social-media-links {
+  justify-content: center;
+  display: flex;
+  flex: 1;
+}
+
+.social-media-link {
+  margin-right: 20px !important;
+}
+
+.suppport-contact-number {
+  display: flex;
+  text-align: left;
+}
+
+.suppport-email-address {
+  display: flex;
+  text-align: left;
+}
+
+.support-details {
+  margin-left: 40px;
+  text-align: right;
+}

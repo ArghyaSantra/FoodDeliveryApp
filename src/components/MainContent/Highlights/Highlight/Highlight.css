@@ -1,0 +1,31 @@
+.highlight {
+  display: flex;
+  height: 75px;
+  border-style: solid;
+  border-width: 1px;
+  color: white;
+  background-color: orange;
+}
+
+.highlight:hover {
+  transform: scale(1.05);
+  transition: all ease-out 0.5s;
+}
+
+.highlight_logo {
+  margin-left: 20px;
+  flex: 1;
+  align-self: center;
+}
+
+.highlight_info {
+  flex: 2;
+  margin-right: 20px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight_info_options {
+  font-size: small;
+}

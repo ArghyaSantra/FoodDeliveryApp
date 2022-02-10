@@ -1,0 +1,7 @@
+.checkout-parent {
+  display: flex;
+  justify-content: space-around;
+  border: solid;
+  border-width: 1px;
+  width: 40%;
+}
