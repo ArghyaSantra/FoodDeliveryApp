@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import "./RestroPageBanner.css";
+import "./restroPageBanner.css";
 
 export class RestroPageBanner extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div class="restro-page-banner">

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { backGroundStyleBuilder } from "./index";
-import "./BannerItem.css";
+import "./bannerItem.css";
 
 const BannerItem = ({ details }) => {
   return (

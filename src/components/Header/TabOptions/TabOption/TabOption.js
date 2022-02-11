@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import "./TabOption.css";
+import "./tabOption.css";
 
 const TabOption = ({ details }) => {
   return (
-    <div className="tab_option">
-      <span className="tab_icon">
-        <i class={details.icon_class}></i>
+    <div className="tabOption">
+      <span className="tabIcon">
+        <i class={details.iconClass}></i>
       </span>
-      <span className="tab_name">{details.name}</span>
+      <span className="tabName">{details.name}</span>
     </div>
   );
 };

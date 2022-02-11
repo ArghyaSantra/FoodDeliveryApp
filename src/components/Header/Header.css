@@ -1,38 +1,10 @@
-.header
-{
-    display:flex;
-    height: 80px;
-}
-
-.logo_and_location
-{
-   display: flex;
-   flex:1;
-   margin-left: 50px;
-}
-
-.logo_img
-{
-    height: 60px;
-    width: 60x;
-    padding: 10px;
-}
-
-.location{
+.header {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 80px;
 }
 
-.down-icon
-{
-  margin-top: 7.5px;
-  margin-left: 5px;
-}
-
-.tab_options
-{
-    flex: 2;
-    justify-content: flex-end;
-    margin-right: 50px;
+.tabOptions {
+  flex: 2;
+  justify-content: flex-end;
+  margin-right: 50px;
 }

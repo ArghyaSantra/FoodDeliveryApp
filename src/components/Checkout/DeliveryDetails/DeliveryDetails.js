@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import AddressBtn from "./AddressBtn";
 
-import "./DeliveryDetails.css";
+import "./deliveryDetails.css";
 
 const DeliveryDetails = ({ getAddress }) => {
   return (
@@ -38,11 +36,6 @@ const DeliveryDetails = ({ getAddress }) => {
           getAddress({ name, value });
         }}
       />
-      {/* <div className="checkout-btn-group">
-          <AddressBtn name="Home" />
-          <AddressBtn name="Work" />
-          <AddressBtn name="Others" />
-    </div>*/}
     </div>
   );
 };

@@ -1,31 +1,28 @@
-import React, { useEffect } from "react";
-import "./RestroDetailList.css";
+import React from "react";
+import "./restroDetailList.css";
 import Button from "@material-ui/core/Button";
-import CartCounterButton from "../../../CartCounterButton/CartCounterButton";
 
 function RestroDetailList({ id, details, dishClicked }) {
-  let ItemCount = 0;
-  const itemCount = (count) => {
-    console.log("itemCount=>" + count);
-    ItemCount = count;
+  let itemCount = 0;
+  const itemCounter = (count) => {
+    itemCount = count;
   };
 
   return (
-    <div className="restrodetaillist">
-      <div className="restrodetaillist-info">
-        <p>{details.Name}</p>
-        <p>{details.Price}</p>
-        <p>{details.Description}</p>
+    <div className="restroDetailList">
+      <div className="restroDetailListInfo">
+        <p>{details.name}</p>
+        <p>{details.price}</p>
+        <p>{details.description}</p>
       </div>
-      <div className="restrodetaillist-image">
-        <img className="dish-pic" src={details.Pic_Id} />
+      <div className="restroDetailListImage">
+        <img className="dishPic" src={details.picId} />
         {/*<CartCounterButton itemCount={itemCount} />*/}
         <Button
           variant="contained"
-          color="tertiary"
+          color="default"
           onClick={() => {
-            //console.log(JSON.stringify(details.Name));
-            dishClicked([details, ItemCount]);
+            dishClicked([details, itemCount]);
           }}
         >
           Add

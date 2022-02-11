@@ -1,24 +1,24 @@
 import React, { Component } from "react";
 import { SocialMediaIconsReact } from "social-media-icons-react";
 
-import "./Footer.css";
+import "./footer.css";
 
 const Footer = () => {
   return (
-    <div className="footer-parent">
-      <div className="support-team-info">
-        <span className="suppport-contact-number">
+    <div className="footerParent">
+      <div className="supportTeamInfo">
+        <span className="suppportContactNumber">
           <i class="fi fi-rr-call-outgoing"></i>
-          <div className="support-details">+91 3323243234</div>
+          <div className="supportDetails">+91 3323243234</div>
         </span>
         <br />
-        <span className="suppport-email-address">
+        <span className="suppportEmailAddress">
           <i class="fi fi-rr-envelope"></i>
           <div className="support-details">supportteam@swiggy.com</div>
         </span>
       </div>
-      <div className="social-media-links">
-        <div className="social-media-link">
+      <div className="socialMediaLinks">
+        <div className="socialMediaLink">
           <SocialMediaIconsReact
             borderColor="rgba(0,0,0,0.25)"
             borderWidth="5"
@@ -32,7 +32,7 @@ const Footer = () => {
             size="38"
           />
         </div>
-        <div className="social-media-link">
+        <div className="socialMediaLink">
           <SocialMediaIconsReact
             borderColor="rgba(0,0,0,0.25)"
             borderWidth="5"
@@ -46,7 +46,7 @@ const Footer = () => {
             size="38"
           />
         </div>
-        <div className="social-media-link">
+        <div className="socialMediaLink">
           <SocialMediaIconsReact
             borderColor="rgba(0,0,0,0.25)"
             borderWidth="5"
@@ -60,7 +60,7 @@ const Footer = () => {
             size="38"
           />
         </div>
-        <div className="social-media-link">
+        <div className="socialMediaLink">
           <SocialMediaIconsReact
             borderColor="rgba(0,0,0,0.25)"
             borderWidth="5"

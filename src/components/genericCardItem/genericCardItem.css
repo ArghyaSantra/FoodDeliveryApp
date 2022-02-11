@@ -1,17 +1,17 @@
-.restroItemParent {
+.itemParent {
   height: 350px;
   width: 275px;
   background-color: white;
   margin: 20px 10px;
 }
 
-.restroItemParent:hover {
+.itemParent:hover {
   transform: scale(1.05);
   transition: all ease-out 0.5s;
   box-shadow: 1px 1px 8px 10px #e0dddd;
 }
 
-.restroitemDetails {
+.itemDetails {
   margin: 15px 15px;
   height: 280px;
   display: flex;
@@ -20,25 +20,25 @@
   padding-bottom: 10px;
 }
 
-.restroPic {
+.itemPic {
   height: 50%;
   width: 100%;
   object-fit: cover;
 }
 
-.rrestroName {
+.itemName {
   text-align: left;
   justify-self: center;
   font-size: medium;
 }
 
-.cuisine {
+.itemCuisine {
   text-align: left;
   font-size: smaller;
   color: gray;
 }
 
-.ratingAndEta {
+.itemRatingAndEta {
   display: flex;
   justify-content: space-between;
   font-size: smaller;
@@ -49,7 +49,7 @@
   margin-right: 5px !important;
 }
 
-.offers {
+.itemOffers {
   color: brown;
 }
 

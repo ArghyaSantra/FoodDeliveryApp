@@ -1,24 +1,24 @@
-.restrolists {
+.restroDishesLists {
   display: flex;
   margin: 0px 0px;
 }
 
-.restrolists-left {
+.restroDishesListsLeft {
   flex: 1;
   background-color: white;
 }
 
-.restrolists-main {
+.restroDishesListsMain {
   flex: 1;
   background-color: white;
 }
 
-.restrolists-right {
+.restroDishesListsRight {
   flex: 1;
   background-color: white;
 }
 
-.search-and-filter {
+.searchAndFilter {
   display: flex;
   align-items: center;
   margin: 20px 0px;
