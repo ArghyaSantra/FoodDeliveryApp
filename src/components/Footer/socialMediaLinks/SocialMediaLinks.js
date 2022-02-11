@@ -1,38 +1,29 @@
 import React from "react";
 import { SocialMediaIconsReact } from "social-media-icons-react";
+import { LINKS } from "./socialMediaLinks.Helper";
+import _ from "lodash";
 
-function SocialMediaLinks({ icon, backgroundColor }) {
-  const links = [
-    {
-      id: 1,
-      icon: "twitter",
-      backgroundColor: "rgba(26,166,233,1)",
-    },
-    {
-      id: 2,
-      icon: "facebook",
-      backgroundColor: "rgba(26,166,233,1)",
-    },
-  ];
-  let bgColor = "rgba(26,166,233,1)";
+function SocialMediaLinks() {
+  const renderSocialMediaLinks = (LINK) => {
+    return (
+      <SocialMediaIconsReact
+        borderColor={LINK.borderColor}
+        borderWidth={LINK.borderWidth}
+        borderStyle={LINK.borderStyle}
+        icon={LINK.icon}
+        iconColor={LINK.iconColor}
+        backgroundColor={LINK.backgroundColor}
+        iconSize={LINK.iconSize}
+        roundness={LINK.roundness}
+        url={LINK.url}
+        size={LINK.size}
+      />
+    );
+  };
+
   return (
-    <div>
-      <div className="socialMediaLink">
-        {links.map((link) => {
-          <SocialMediaIconsReact
-            borderColor="rgba(0,0,0,0.25)"
-            borderWidth="5"
-            borderStyle="solid"
-            icon={link.icon}
-            iconColor="rgba(255,255,255,1)"
-            backgroundColor={link.backgroundColor}
-            iconSize="5"
-            roundness="50%"
-            url="https://some-website.com/my-social-media-url"
-            size="38"
-          />;
-        })}
-      </div>
+    <div className="socialMediaLink">
+      {_.map(LINKS, renderSocialMediaLinks)}
     </div>
   );
 }

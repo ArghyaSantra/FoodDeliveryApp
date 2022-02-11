@@ -113,7 +113,7 @@ export class RestroPage extends Component {
         {!this.state.checkoutClick && <>{this.renderRestroDetailsLists()}</>}
         {this.state.checkoutClick && (
           <>
-            {this.renderCheckoutPage}
+            {this.renderCheckoutPage()}
             {this.renderOrderConfirmation()}
           </>
         )}

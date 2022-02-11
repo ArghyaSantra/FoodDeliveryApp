@@ -7,6 +7,7 @@ import Footer from "./components/footer";
 import RestroPage from "./components/restroPage";
 import { Component } from "react";
 import BannerItems from "./components/bannerItems";
+import SocialMediaLinks from "./components/footer/socialMediaLinks";
 
 class App extends Component {
   state = {
