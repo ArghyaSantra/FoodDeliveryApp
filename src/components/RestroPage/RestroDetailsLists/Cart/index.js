@@ -1,8 +1,6 @@
 import Cart from "./Cart";
 
 export const filteredData = (info) => {
-  console.log("info");
-  console.log(info);
   let total = 0;
   let finalCartDetails = info.filter((detail, id) => id % 2 == 0);
   finalCartDetails.forEach((dishes) => {

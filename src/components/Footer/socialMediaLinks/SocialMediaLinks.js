@@ -19,7 +19,6 @@ function SocialMediaLinks({ icon, backgroundColor }) {
     <div>
       <div className="socialMediaLink">
         {links.map((link) => {
-          console.log(link.icon);
           <SocialMediaIconsReact
             borderColor="rgba(0,0,0,0.25)"
             borderWidth="5"

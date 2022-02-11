@@ -15,7 +15,6 @@ class App extends Component {
 
   restroClicked = (restro) => {
     if (restro) {
-      console.log(this.state.restroClickedFlag);
       this.setState({ restroClickedFlag: true });
     }
   };

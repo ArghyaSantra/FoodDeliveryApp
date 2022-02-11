@@ -4,11 +4,7 @@ import Button from "@material-ui/core/Button";
 import { filteredData } from "./index";
 
 function Cart({ cartDetails, ItemCount, checkoutClicked }) {
-  console.log("cartDetails");
-  console.log(cartDetails);
   let [finalCartDetails, total] = filteredData(cartDetails);
-  console.log(finalCartDetails + "******");
-  console.log(total);
   return (
     <div className="cart">
       <h1>Cart</h1>

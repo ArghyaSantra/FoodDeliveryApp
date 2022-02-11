@@ -16,7 +16,6 @@ export class MainContent extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
     Promise.all([getRestroList(), getHighlightsList()]).then((values) => {
       this.setState({
         highlights: values[1],
@@ -25,7 +24,6 @@ export class MainContent extends Component {
     });
   }
   restroClicked = (restro) => {
-    console.log(restro);
     this.props.restroClicked(restro);
   };
 
@@ -45,7 +43,6 @@ export class MainContent extends Component {
   }
 
   render() {
-    console.log("render");
     return (
       <div className="mainContent">
         <div className="highLights">

@@ -27,8 +27,6 @@ class RestroDetailsLists extends Component {
   }
 
   renderCartSection() {
-    console.log("this.props.cartDetails");
-    console.log(this.props.cartDetails);
     return (
       <Cart
         cartDetails={this.props.cartDetails}
