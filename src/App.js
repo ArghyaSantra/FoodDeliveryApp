@@ -7,7 +7,7 @@ import Footer from "./components/footer";
 import RestroPage from "./components/restroPage";
 import { Component } from "react";
 import BannerItems from "./components/bannerItems";
-import SocialMediaLinks from "./components/footer/socialMediaLinks";
+import { AppProvider } from "./Context/AppContext";
 
 class App extends Component {
   state = {
@@ -41,12 +41,15 @@ class App extends Component {
   }
 
   render() {
+    const { currentRestro, changeCurrentRestro } = this.context;
     return (
       <div className="App">
-        {this.renderHeader()}
-        {!this.state.restroClickedFlag &&
-          this.renderRestroDetailsAndHighlights()}
-        {this.state.restroClickedFlag && this.renderRestroDishesPage()}
+        <AppProvider>
+          {this.renderHeader()}
+          {this.state.restroClickedFlag
+            ? this.renderRestroDishesPage()
+            : this.renderRestroDetailsAndHighlights()}
+        </AppProvider>
       </div>
     );
   }

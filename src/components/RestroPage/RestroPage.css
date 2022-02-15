@@ -1,0 +1,9 @@
+.restroPageParent {
+  display: flex;
+  flex-direction: column;
+}
+
+.restroPageCheckoutPage {
+  display: flex;
+  justify-content: center;
+}

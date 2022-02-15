@@ -6,12 +6,15 @@ import "./checkout.css";
 
 const Checkout = (props) => {
   return (
-    <div className="checkout-parent">
+    <div className="checkoutParent">
       <DeliveryDetails
         addressDetails={props.addressDetails}
         getAddress={props.getAddress}
       />
-      <Cart cartDetails={props.cartDetails} />
+      <Cart
+        cartDetails={props.cartDetails}
+        finalCheckoutClicked={props.finalCheckoutClicked}
+      />
     </div>
   );
 };

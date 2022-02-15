@@ -1,10 +1,8 @@
-.checkout-parent {
+.checkoutParent {
   display: flex;
   justify-content: space-around;
   border: solid;
   border-width: 1px;
-  width: 40%;
-  margin-top: 40px;
-  margin-left: 50%;
+  margin-top: 50px;
   padding: 20px;
 }

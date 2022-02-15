@@ -1,5 +1,6 @@
 import React from "react";
 import "./genericCardItem.css";
+import WithHover from "../withHover/WithHover";
 
 function GenericCardItem({ details, onClickEvent }) {
   const { name, picId, tags, eta, ratings, price, offers } = details;

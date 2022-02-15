@@ -3,7 +3,12 @@ import "./cart.css";
 import Button from "@material-ui/core/Button";
 import { filteredData } from "./index";
 
-function Cart({ cartDetails, ItemCount, checkoutClicked }) {
+function Cart({
+  cartDetails,
+  ItemCount,
+  checkoutClicked,
+  finalCheckoutClicked,
+}) {
   let [finalCartDetails, total] = filteredData(cartDetails);
   return (
     <div className="cart">
@@ -21,7 +26,11 @@ function Cart({ cartDetails, ItemCount, checkoutClicked }) {
       </p>
       <p> Total : ₹ {total}</p>
       <div className="btn-checkout">
-        <Button variant="contained" color="primary" onClick={checkoutClicked}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={checkoutClicked ? checkoutClicked : finalCheckoutClicked}
+        >
           Checkout
         </Button>
       </div>

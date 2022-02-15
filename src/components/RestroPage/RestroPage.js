@@ -4,6 +4,7 @@ import RestroPageBanner from "./restroPageBanner";
 import Checkout from "../checkout";
 import OrderConfirmation from "../orderConfirmation";
 import { getRestroDishes } from "./restroPage.Helper";
+import "./restroPage.css";
 
 export class RestroPage extends Component {
   state = {
@@ -11,6 +12,7 @@ export class RestroPage extends Component {
     ItemCount: 0,
     restro_dishes: [],
     checkoutClick: false,
+    finalCheckoutClicked: false,
     residenceDetails: { FirstLine: "", SecondLine: "", ThirdLine: "" },
   };
 
@@ -54,6 +56,10 @@ export class RestroPage extends Component {
     this.setState({ ...this.state, checkoutClick: true });
   };
 
+  finalCheckoutClicked = () => {
+    this.setState({ ...this.state, finalCheckoutClicked: true });
+  };
+
   getAddress = (address) => {
     let updatedAddress = this.state.residenceDetails;
     if (address.name === "address-txtfield") {
@@ -93,7 +99,11 @@ export class RestroPage extends Component {
 
   renderCheckoutPage() {
     return (
-      <Checkout cartDetails={this.state.cart} getAddress={this.getAddress} />
+      <Checkout
+        cartDetails={this.state.cart}
+        getAddress={this.getAddress}
+        finalCheckoutClicked={this.finalCheckoutClicked}
+      />
     );
   }
 
@@ -108,14 +118,15 @@ export class RestroPage extends Component {
 
   render() {
     return (
-      <div className="restropPageParent">
+      <div className="restroPageParent">
         {this.renderRestroPageBanner()}
         {!this.state.checkoutClick && <>{this.renderRestroDetailsLists()}</>}
         {this.state.checkoutClick && (
-          <>
-            {this.renderCheckoutPage()}
-            {this.renderOrderConfirmation()}
-          </>
+          <div className="restroPageCheckoutPage">
+            {this.state.finalCheckoutClicked
+              ? this.renderOrderConfirmation()
+              : this.renderCheckoutPage()}
+          </div>
         )}
       </div>
     );

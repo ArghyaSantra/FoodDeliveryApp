@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./header.css";
 import LogoAndLocation from "./logoAndLocation";
+import options from "./tabOptions/tabOptions.Helper";
 
 //Importing Components
 import TabOptions from "./tabOptions";
@@ -15,28 +16,6 @@ class Header extends Component {
   }
 
   renderHeaderTabs() {
-    const options = [
-      {
-        name: "Search",
-        id: 1,
-        iconClass: "fi fi-rr-search",
-      },
-      {
-        name: "Offers",
-        id: 2,
-        iconClass: "fi fi-rr-ticket",
-      },
-      {
-        name: "Sign In",
-        id: 3,
-        iconClass: "fi fi-rr-user",
-      },
-      {
-        name: "Cart",
-        id: 4,
-        iconClass: "fi fi-rr-shopping-cart",
-      },
-    ];
     return <TabOptions tabOptions={options} />;
   }
   render() {

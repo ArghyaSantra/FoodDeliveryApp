@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import RestroItem from "./restroItem";
 import _ from "lodash";
 import "./restroLists.css";
+import ErrorBoundary from "../../errorBoundary/ErrorBoundary";
 
 const RestroLists = ({ restroClicked, restroList }) => {
   const restroClickedHere = (restro) => {
@@ -19,8 +20,11 @@ const RestroLists = ({ restroClicked, restroList }) => {
   }
 
   function renderRestroList() {
+    //throw new Error("Something went wrong in Restro Items");
     return (
-      <div className="restroList">{_.map(restroList, renderRestroItems)}</div>
+      <ErrorBoundary>
+        <div className="restroList">{_.map(restroList, renderRestroItems)}</div>
+      </ErrorBoundary>
     );
   }
   return renderRestroList();

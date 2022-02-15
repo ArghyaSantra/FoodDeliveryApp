@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ErrorBoundary from "../../../errorBoundary/ErrorBoundary";
 import "./highlight.css";
 
 export class Highlight extends Component {

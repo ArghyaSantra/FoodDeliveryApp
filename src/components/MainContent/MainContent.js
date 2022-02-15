@@ -4,6 +4,7 @@ import RestroLists from "./restroLists";
 import "./mainContent.css";
 import { getHighlightsList } from "./highlights/highlight/highights.Helper";
 import { getRestroList } from "./restroLists/restroLists.Helper";
+import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 
 export class MainContent extends Component {
   constructor(props) {
@@ -46,10 +47,12 @@ export class MainContent extends Component {
     return (
       <div className="mainContent">
         <div className="highLights">
-          <Highlights
-            highlights={this.state.highlights}
-            highlightClicked={this.highlightClicked}
-          />
+          <ErrorBoundary>
+            <Highlights
+              highlights={this.state.highlights}
+              highlightClicked={this.highlightClicked}
+            />
+          </ErrorBoundary>
         </div>
         <div className="restroLists">
           <RestroLists
