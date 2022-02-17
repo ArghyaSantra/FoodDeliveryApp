@@ -13,30 +13,24 @@ class DeliveryDetails extends Component {
 
   static contextType = AppContext;
 
+  renderTextField(name, label) {
+    return (
+      <TextField
+        style={{ backgroundColor: "white" }}
+        id="outlined-basic"
+        name={name}
+        label={label}
+        variant="outlined"
+        onChange={this.eventHandler}
+      />
+    );
+  }
   render() {
     return (
       <div className="delivery-details-parent">
-        <TextField
-          id="outlined-basic"
-          name="address-txtfield"
-          label="Address"
-          variant="outlined"
-          onChange={this.eventHandler}
-        />
-        <TextField
-          id="outlined-basic"
-          name="flat-txtfield"
-          label="Door/Flat No."
-          variant="outlined"
-          onChange={this.eventHandler}
-        />
-        <TextField
-          id="outlined-basic"
-          name="landmark-txtfield"
-          label="Landmark"
-          variant="outlined"
-          onChange={this.eventHandler}
-        />
+        {this.renderTextField("address-txtfield", "Address")}
+        {this.renderTextField("flat-txtfield", "Door/Flat No.")}
+        {this.renderTextField("landmark-txtfield", "Landmark")}
       </div>
     );
   }

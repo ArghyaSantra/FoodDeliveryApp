@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import "./tabOption.css";
 
 const TabOption = ({ details }) => {
+  const { iconClass, name } = details;
   return (
     <div className="tabOption">
       <span className="tabIcon">
-        <i class={details.iconClass}></i>
+        <i class={iconClass}></i>
       </span>
-      <span className="tabName">{details.name}</span>
+      <span className="tabName">{name}</span>
     </div>
   );
 };

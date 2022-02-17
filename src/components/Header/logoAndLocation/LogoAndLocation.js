@@ -12,7 +12,7 @@ function LogoAndLocation() {
       </div>
       <div className="location">
         <h3>Bengaluru, Karnataka, India</h3>
-        <i class="fi fi-rr-angle-down downIcon"></i>
+        <i className="fi fi-rr-angle-down downIcon"></i>
       </div>
     </div>
   );

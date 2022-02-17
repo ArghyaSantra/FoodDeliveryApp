@@ -5,6 +5,9 @@ import "./mainContent.css";
 import { getHighlightsList } from "./highlights/highlight/highights.Helper";
 import { getRestroList } from "./restroLists/restroLists.Helper";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
+import AppContext from "../../Context";
+import { isHighlightChanged } from "./mainContent.Helper";
+import { getClassNameBasedOnTheme } from "../../utilities/themeRelatedUtils";
 
 export class MainContent extends Component {
   constructor(props) {
@@ -16,6 +19,8 @@ export class MainContent extends Component {
     };
   }
 
+  static contextType = AppContext;
+
   componentDidMount() {
     Promise.all([getRestroList(), getHighlightsList()]).then((values) => {
       this.setState({
@@ -24,40 +29,42 @@ export class MainContent extends Component {
       });
     });
   }
+
   restroClicked = (restro) => {
     this.props.restroClicked(restro);
   };
 
   highlightClicked = (highlightName) => {
-    this.setState({ ...this.state, hightlightPicked: highlightName });
+    this.setState({ hightlightPicked: highlightName });
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      this.state.hightlightPicked &&
-      prevState.hightlightPicked !== this.state.hightlightPicked
-    ) {
-      getRestroList(this.state.hightlightPicked).then((values) => {
-        this.setState({ ...this.state, restrolist: values });
+    const { hightlightPicked } = this.state;
+    if (isHighlightChanged(this.state, prevState)) {
+      getRestroList(hightlightPicked).then((values) => {
+        console.log(values);
+        this.setState({ restrolist: values });
       });
     }
   }
 
   render() {
+    const { currentTheme } = this.context;
+    const { highlights, restrolist } = this.state;
     return (
-      <div className="mainContent">
+      <div className={getClassNameBasedOnTheme(currentTheme, "mainContent")}>
         <div className="highLights">
           <ErrorBoundary>
             <Highlights
-              highlights={this.state.highlights}
+              highlights={highlights}
               highlightClicked={this.highlightClicked}
             />
           </ErrorBoundary>
         </div>
-        <div className="restroLists">
+        <div className={getClassNameBasedOnTheme(currentTheme, "restroLists")}>
           <RestroLists
             restroClicked={this.restroClicked}
-            restroList={this.state.restrolist}
+            restroList={restrolist}
           />
         </div>
       </div>

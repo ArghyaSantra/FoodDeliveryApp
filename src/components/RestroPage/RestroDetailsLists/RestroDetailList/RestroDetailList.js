@@ -7,17 +7,22 @@ function RestroDetailList({ id, details, dishClicked }) {
   const itemCounter = (count) => {
     itemCount = count;
   };
+  const { name, price, description, picId } = details;
 
-  return (
-    <div className="restroDetailList">
+  function renderDishDetails() {
+    return (
       <div className="restroDetailListInfo">
-        <p>{details.name}</p>
-        <p>{details.price}</p>
-        <p>{details.description}</p>
+        <p>{name}</p>
+        <p>{price}</p>
+        <p>{description}</p>
       </div>
+    );
+  }
+
+  function renderDishPicAndAddButton() {
+    return (
       <div className="restroDetailListImage">
-        <img className="dishPic" src={details.picId} />
-        {/*<CartCounterButton itemCount={itemCount} />*/}
+        <img className="dishPic" src={picId} />
         <Button
           variant="contained"
           color="default"
@@ -28,6 +33,12 @@ function RestroDetailList({ id, details, dishClicked }) {
           Add
         </Button>
       </div>
+    );
+  }
+  return (
+    <div className="restroDetailList">
+      {renderDishDetails()}
+      {renderDishPicAndAddButton()}
     </div>
   );
 }

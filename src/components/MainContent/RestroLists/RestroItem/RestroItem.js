@@ -11,15 +11,18 @@ class RestroItem extends Component {
   static contextType = AppContext;
 
   restroClicked = (restro) => {
+    const { restroClicked } = this.props;
     const { currentRestro, changeCurrentRestro } = this.context;
     changeCurrentRestro(restro);
-    this.props.restroClicked(restro);
+    restroClicked(restro);
   };
   render() {
+    const { details, renderAdditionalInfo } = this.props;
     return (
       <GenericCardItem
-        details={this.props.details}
+        details={details}
         onClickEvent={this.restroClicked}
+        renderAdditionalInfo={renderAdditionalInfo}
       />
     );
   }

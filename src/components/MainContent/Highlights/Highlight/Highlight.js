@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import AppContext from "../../../../Context";
+import { getClassNameBasedOnTheme } from "../../../../utilities/themeRelatedUtils";
 import ErrorBoundary from "../../../errorBoundary/ErrorBoundary";
 import "./highlight.css";
 
@@ -7,18 +9,23 @@ export class Highlight extends Component {
     super(props);
     this.details = this.props.details;
   }
+
+  static contextType = AppContext;
+
   render() {
+    const { currentTheme } = this.context;
+    const { iconClass, title, options } = this.details;
     return (
       <div
-        className="highlight"
-        onClick={() => this.props.highlightClicked(this.details.title)}
+        className={getClassNameBasedOnTheme(currentTheme, "highlight")}
+        onClick={() => this.props.highlightClicked(title)}
       >
         <span className="highlightLogo">
-          <i class={this.details.iconClass}></i>
+          <i class={iconClass}></i>
         </span>
         <span className="highlightInfo">
-          <span>{this.details.title}</span>
-          <span className="highlightInfoOptions">{this.details.options}</span>
+          <span>{title}</span>
+          <span className="highlightInfoOptions">{options}</span>
         </span>
       </div>
     );

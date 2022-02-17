@@ -6,6 +6,14 @@
   display: flex;
 }
 
+.restroPageBannerDark {
+  width: 100%;
+  height: 250px;
+  background-color: white;
+  color: black;
+  display: flex;
+}
+
 .bannerLeft {
   display: flex;
   flex: 1;

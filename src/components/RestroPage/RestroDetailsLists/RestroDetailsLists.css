@@ -1,21 +1,26 @@
 .restroDishesLists {
   display: flex;
   margin: 0px 0px;
+  background-color: white;
+}
+
+.restroDishesListsDark {
+  display: flex;
+  margin: 0px 0px;
+  background-color: black;
+  color: white;
 }
 
 .restroDishesListsLeft {
   flex: 1;
-  background-color: white;
 }
 
 .restroDishesListsMain {
   flex: 1;
-  background-color: white;
 }
 
 .restroDishesListsRight {
   flex: 1;
-  background-color: white;
 }
 
 .searchAndFilter {

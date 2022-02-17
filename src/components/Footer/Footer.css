@@ -3,7 +3,7 @@
   height: 200px;
   align-items: center;
   background-color: black;
-  margin: 0 100px;
+  padding: 0 100px;
 }
 
 .supportTeamInfo {
@@ -28,7 +28,7 @@
   text-align: left;
 }
 
-.ssuppportEmailAddress {
+.suppportEmailAddress {
   display: flex;
   text-align: left;
 }

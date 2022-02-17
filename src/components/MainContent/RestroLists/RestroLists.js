@@ -9,12 +9,17 @@ const RestroLists = ({ restroClicked, restroList }) => {
     restroClicked(restro);
   };
 
-  function renderRestroItems(restroitem) {
+  function AdditionalInfo() {
+    return <div>Additional Info</div>;
+  }
+
+  function renderRestroItems({ id, details }) {
     return (
       <RestroItem
-        key={restroitem.id}
-        details={restroitem.details}
+        key={id}
+        details={details}
         restroClicked={restroClickedHere}
+        renderAdditionalInfo={AdditionalInfo}
       />
     );
   }

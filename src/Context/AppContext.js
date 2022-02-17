@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { toggleTheme } from "./themeContext.Helper";
 
 const AppContext = React.createContext();
 
 export class AppProvider extends Component {
   state = {
     currentRestro: null,
+    currentTheme: "light",
     currentAddress: {
       firstLine: null,
       secondLine: null,
@@ -18,37 +20,45 @@ export class AppProvider extends Component {
     });
   };
 
+  changeTheme = () => {
+    const { currentTheme } = this.state;
+    const updatedTheme = toggleTheme(currentTheme);
+    this.setState({
+      currentTheme: updatedTheme,
+    });
+  };
+
   changeCurrentAddress = (name, value) => {
     if (name === "address-txtfield") {
       this.setState({
-        ...this.state,
         currentAddress: { ...this.state.currentAddress, firstLine: value },
       });
     }
     if (name === "flat-txtfield") {
       this.setState({
-        ...this.state,
         currentAddress: { ...this.state.currentAddress, secondLine: value },
       });
     }
     if (name === "landmark-txtfield") {
       this.setState({
-        ...this.state,
         currentAddress: { ...this.state.currentAddress, thirdLine: value },
       });
     }
   };
 
   render() {
-    const { currentRestro, currentAddress } = this.state;
-    const { changeCurrentRestro, changeCurrentAddress } = this;
+    const { currentRestro, currentAddress, currentTheme } = this.state;
+    const { changeCurrentRestro, changeCurrentAddress, changeTheme } = this;
+
     return (
       <AppContext.Provider
         value={{
           currentRestro,
           currentAddress,
+          currentTheme,
           changeCurrentRestro,
           changeCurrentAddress,
+          changeTheme,
         }}
       >
         {this.props.children}

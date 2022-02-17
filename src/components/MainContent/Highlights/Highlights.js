@@ -6,16 +6,16 @@ import "./highlights.css";
 import ErrorBoundary from "../../errorBoundary/ErrorBoundary";
 
 const Highlights = ({ highlights, highlightClicked }) => {
-  function renderHighlights(highlight) {
+  function renderHighlights({ id, details }) {
     return (
       <Highlight
-        key={highlight.id}
-        details={highlight.details}
+        key={id}
+        details={details}
         highlightClicked={highlightClicked}
       />
     );
   }
-  throw new Error("Something went wrong!!!");
+  // throw new Error("Something went wrong!!!");
   return (
     <ErrorBoundary>
       <div className="highlightsInside">

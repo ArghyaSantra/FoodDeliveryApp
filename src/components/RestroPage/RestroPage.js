@@ -5,6 +5,8 @@ import Checkout from "../checkout";
 import OrderConfirmation from "../orderConfirmation";
 import { getRestroDishes } from "./restroPage.Helper";
 import "./restroPage.css";
+import AppContext from "../../Context";
+import { getClassNameBasedOnTheme } from "../../utilities/themeRelatedUtils";
 
 export class RestroPage extends Component {
   state = {
@@ -16,8 +18,11 @@ export class RestroPage extends Component {
     residenceDetails: { FirstLine: "", SecondLine: "", ThirdLine: "" },
   };
 
+  static contextType = AppContext;
+
   restroDishesFixed = [];
   componentDidMount() {
+    console.log("yaha aaye");
     getRestroDishes().then((RestroDishesResponse) => {
       this.restroDishesFixed = RestroDishesResponse;
       this.setState({ restro_dishes: RestroDishesResponse });
@@ -60,7 +65,7 @@ export class RestroPage extends Component {
     this.setState({ ...this.state, finalCheckoutClicked: true });
   };
 
-  getAddress = (address) => {
+  /*getAddress = (address) => {
     let updatedAddress = this.state.residenceDetails;
     if (address.name === "address-txtfield") {
       updatedAddress.FirstLine = updatedAddress.FirstLine
@@ -78,7 +83,7 @@ export class RestroPage extends Component {
     this.setState((state) => {
       return { ...state, residenceDetails: updatedAddress };
     });
-  };
+  };*/
 
   renderRestroPageBanner() {
     return <RestroPageBanner />;
@@ -101,7 +106,6 @@ export class RestroPage extends Component {
     return (
       <Checkout
         cartDetails={this.state.cart}
-        getAddress={this.getAddress}
         finalCheckoutClicked={this.finalCheckoutClicked}
       />
     );
@@ -117,12 +121,18 @@ export class RestroPage extends Component {
   }
 
   render() {
+    const { currentTheme } = this.context;
     return (
       <div className="restroPageParent">
         {this.renderRestroPageBanner()}
         {!this.state.checkoutClick && <>{this.renderRestroDetailsLists()}</>}
         {this.state.checkoutClick && (
-          <div className="restroPageCheckoutPage">
+          <div
+            className={getClassNameBasedOnTheme(
+              currentTheme,
+              "restroPageCheckoutPage"
+            )}
+          >
             {this.state.finalCheckoutClicked
               ? this.renderOrderConfirmation()
               : this.renderCheckoutPage()}

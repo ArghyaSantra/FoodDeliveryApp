@@ -3,6 +3,22 @@
   height: 80px;
 }
 
+.headerDark {
+  display: flex;
+  height: 80px;
+  color: white;
+  background-color: black;
+}
+
+.btnTheme {
+  color: black;
+}
+
+.btnThemeDark {
+  color: white;
+  background-color: black;
+}
+
 .tabOptions {
   flex: 2;
   justify-content: flex-end;

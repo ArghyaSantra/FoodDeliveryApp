@@ -7,6 +7,15 @@
   background-color: orange;
 }
 
+.highlightDark {
+  display: flex;
+  height: 75px;
+  border-style: solid;
+  border-width: 1px;
+  color: white;
+  background-color: black;
+}
+
 .highlight:hover {
   transform: scale(1.05);
   transition: all ease-out 0.5s;

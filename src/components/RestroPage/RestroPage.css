@@ -6,4 +6,14 @@
 .restroPageCheckoutPage {
   display: flex;
   justify-content: center;
+  background-color: white;
+  padding-bottom: 200px;
+}
+
+.restroPageCheckoutPageDark {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  padding-bottom: 200px;
 }

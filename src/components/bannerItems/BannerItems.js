@@ -3,11 +3,15 @@ import BannerItem from "./bannerItem";
 import _ from "lodash";
 import "./bannerItems.css";
 import { getBannerItems } from "./bannerItems.Helper";
+import AppContext from "../../Context";
+import { getClassNameBasedOnTheme } from "../../utilities/themeRelatedUtils";
 
 export class BannerItems extends Component {
   state = {
     bannerItems: [],
   };
+
+  static contextType = AppContext;
 
   componentDidMount() {
     getBannerItems().then((BannerResponse) => {
@@ -20,9 +24,11 @@ export class BannerItems extends Component {
   };
 
   render() {
+    const { currentTheme } = this.context;
+    const { bannerItems } = this.state;
     return (
-      <div className="bannerItems">
-        {_.map(this.state.bannerItems, this.renderBannerItems)}
+      <div className={getClassNameBasedOnTheme(currentTheme, "bannerItems")}>
+        {_.map(bannerItems, this.renderBannerItems)}
       </div>
     );
   }

@@ -1,5 +1,11 @@
 .mainContent {
   display: flex;
+  background-color: white;
+}
+
+.mainContentDark {
+  display: flex;
+  background-color: black;
 }
 
 .highLights {
@@ -13,5 +19,11 @@
 .restroLists {
   flex: 2;
   background-color: orange;
+  margin-right: 100px;
+}
+
+.restroListsDark {
+  flex: 2;
+  background-color: black;
   margin-right: 100px;
 }

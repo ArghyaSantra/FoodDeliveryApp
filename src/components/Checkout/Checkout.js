@@ -4,17 +4,33 @@ import Cart from "../restroPage/restroDetailsLists/cart";
 
 import "./checkout.css";
 
-const Checkout = (props) => {
+const Checkout = ({
+  addressDetails,
+  getAddress,
+  cartDetails,
+  finalCheckoutClicked,
+}) => {
+  function renderDeliveryDetails() {
+    return (
+      <DeliveryDetails
+        addressDetails={addressDetails}
+        getAddress={getAddress}
+      />
+    );
+  }
+
+  function renderCart() {
+    return (
+      <Cart
+        cartDetails={cartDetails}
+        finalCheckoutClicked={finalCheckoutClicked}
+      />
+    );
+  }
   return (
     <div className="checkoutParent">
-      <DeliveryDetails
-        addressDetails={props.addressDetails}
-        getAddress={props.getAddress}
-      />
-      <Cart
-        cartDetails={props.cartDetails}
-        finalCheckoutClicked={props.finalCheckoutClicked}
-      />
+      {renderDeliveryDetails()}
+      {renderCart()}
     </div>
   );
 };
