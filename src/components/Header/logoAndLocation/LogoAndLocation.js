@@ -1,7 +1,7 @@
 import React from "react";
 import "./logoAndLocation.css";
 
-function LogoAndLocation() {
+const LogoAndLocation = () => {
   return (
     <div className="logoAndLocation">
       <div className="logo">
@@ -16,6 +16,6 @@ function LogoAndLocation() {
       </div>
     </div>
   );
-}
+};
 
 export default LogoAndLocation;

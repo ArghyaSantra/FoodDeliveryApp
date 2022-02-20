@@ -10,10 +10,11 @@ const RestroLists = ({ restroClicked, restroList }) => {
   };
 
   function renderRestroItems(restroitem) {
+    const { id, details } = restroitem;
     return (
       <RestroItem
-        key={restroitem.id}
-        details={restroitem.details}
+        key={id}
+        details={details}
         restroClicked={restroClickedHere}
       />
     );

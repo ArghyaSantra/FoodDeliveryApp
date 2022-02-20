@@ -1,13 +1,14 @@
 import React from "react";
 import "./restroDetailList.css";
 import Button from "@material-ui/core/Button";
+import { useNavigate } from "react-router-dom";
 
 function RestroDetailList({ id, details, dishClicked }) {
-  let itemCount = 0;
+  /*let itemCount = 0;
   const itemCounter = (count) => {
     itemCount = count;
-  };
-
+  };*/
+  const navigate = useNavigate();
   return (
     <div className="restroDetailList">
       <div className="restroDetailListInfo">
@@ -22,7 +23,8 @@ function RestroDetailList({ id, details, dishClicked }) {
           variant="contained"
           color="default"
           onClick={() => {
-            dishClicked([details, itemCount]);
+            dishClicked([details]);
+            //navigate("/checkout");
           }}
         >
           Add

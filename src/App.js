@@ -5,54 +5,66 @@ import Header from "./components/header";
 import MainContent from "./components/mainContent";
 import Footer from "./components/footer";
 import RestroPage from "./components/restroPage";
-import { Component } from "react";
+import { useState } from "react";
 import BannerItems from "./components/bannerItems";
 import { AppProvider } from "./Context/AppContext";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 
-class App extends Component {
-  state = {
-    restroClickedFlag: false,
-  };
+const App = () => {
+  const [restroClickedFlag, setRestroClickedFlag] = useState(false);
+  const navigate = useNavigate();
 
-  restroClicked = (restro) => {
+  const restroClicked = (restro) => {
     if (restro) {
-      this.setState({ restroClickedFlag: true });
+      setRestroClickedFlag(true);
     }
+    navigate("/restro/1");
   };
 
-  renderHeader() {
+  function renderHeader() {
     return <Header />;
   }
 
-  renderRestroDetailsAndHighlights() {
+  function renderRestroDetailsAndHighlights() {
     return (
       <>
         <BannerItems />
-        <MainContent restroClicked={this.restroClicked} />
+        <MainContent restroClicked={restroClicked} />
         <Footer />
       </>
     );
   }
 
-  renderRestroDishesPage() {
+  function renderRestroDishesPage() {
     {
       return <RestroPage />;
     }
   }
 
-  render() {
-    const { currentRestro, changeCurrentRestro } = this.context;
-    return (
-      <div className="App">
-        <AppProvider>
-          {this.renderHeader()}
-          {this.state.restroClickedFlag
-            ? this.renderRestroDishesPage()
-            : this.renderRestroDetailsAndHighlights()}
-        </AppProvider>
-      </div>
-    );
-  }
-}
+  //const { currentRestro, changeCurrentRestro } = this.context;
+  return (
+    <div className="App">
+      <AppProvider>
+        {renderHeader()}
+        <Routes>
+          <Route
+            path="/restro/:restroId"
+            element={renderRestroDishesPage()}
+          ></Route>
+          <Route
+            path="/restro"
+            element={renderRestroDetailsAndHighlights()}
+          ></Route>
+          <Route path="/checkout" element={<h1>Hello</h1>}></Route>
+        </Routes>
+      </AppProvider>
+    </div>
+  );
+};
 
 export default App;

@@ -1,28 +1,19 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import AppContext from "../../../../Context";
 import GenericCardItem from "../../../genericCardItem";
 import "./restroItem.css";
 
-class RestroItem extends Component {
-  constructor(props) {
-    super(props);
-  }
+const RestroItem = (props) => {
+  //static contextType = AppContext;
+  const { currentRestro, changeCurrentRestro } = useContext(AppContext);
 
-  static contextType = AppContext;
-
-  restroClicked = (restro) => {
-    const { currentRestro, changeCurrentRestro } = this.context;
+  const restroClicked = (restro) => {
     changeCurrentRestro(restro);
-    this.props.restroClicked(restro);
+    props.restroClicked(restro);
   };
-  render() {
-    return (
-      <GenericCardItem
-        details={this.props.details}
-        onClickEvent={this.restroClicked}
-      />
-    );
-  }
-}
+  return (
+    <GenericCardItem details={props.details} onClickEvent={restroClicked} />
+  );
+};
 
 export default RestroItem;

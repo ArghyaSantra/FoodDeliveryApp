@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import "./header.css";
 import LogoAndLocation from "./logoAndLocation";
 import options from "./tabOptions/tabOptions.Helper";
@@ -7,25 +7,21 @@ import options from "./tabOptions/tabOptions.Helper";
 import TabOptions from "./tabOptions";
 //
 
-class Header extends Component {
-  state = {
-    tabOptions: [],
-  };
-  renderLogoAndLocation() {
+const Header = () => {
+  const [tabOptions, setTabOptions] = useState([]);
+  function renderLogoAndLocation() {
     return <LogoAndLocation />;
   }
 
-  renderHeaderTabs() {
+  function renderHeaderTabs() {
     return <TabOptions tabOptions={options} />;
   }
-  render() {
-    return (
-      <div className="header">
-        {this.renderLogoAndLocation()}
-        {this.renderHeaderTabs()}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="header">
+      {renderLogoAndLocation()}
+      {renderHeaderTabs()}
+    </div>
+  );
+};
 
 export default Header;

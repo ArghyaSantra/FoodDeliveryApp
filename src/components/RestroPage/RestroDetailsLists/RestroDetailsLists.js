@@ -7,65 +7,57 @@ import "./restroDetailsLists.css";
 import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 
-class RestroDetailsLists extends Component {
-  constructor(props) {
-    super(props);
-  }
+const RestroDetailsLists = (props) => {
+  const {
+    dishClicked,
+    restroDishes,
+    cartDetails,
+    checkoutClicked,
+    searchFunctionality,
+    filterFunctionality,
+  } = props;
 
-  renderRestroDetailsLists = (dish) => {
+  const renderRestroDetailsLists = ({ id, details }) => {
     return (
-      <RestroDetailList
-        key={dish.id}
-        details={dish.details}
-        dishClicked={this.props.dishClicked}
-      />
+      <RestroDetailList key={id} details={details} dishClicked={dishClicked} />
     );
   };
 
-  renderCompleteRestroList() {
-    return _.map(this.props.restroDishes, this.renderRestroDetailsLists);
+  function renderCompleteRestroList() {
+    return _.map(restroDishes, renderRestroDetailsLists);
   }
 
-  renderCartSection() {
-    return (
-      <Cart
-        cartDetails={this.props.cartDetails}
-        checkoutClicked={this.props.checkoutClicked}
-      />
-    );
+  function renderCartSection() {
+    return <Cart cartDetails={cartDetails} checkoutClicked={checkoutClicked} />;
   }
 
-  render() {
-    return (
-      <div className="restroDishesLists">
-        <div className="restroDishesListsLeft">Left-section</div>
-        <div className="restroDishesListsMain">
-          <div className="searchAndFilter">
-            <div className="search">
-              <TextField
-                id="outlined-basic"
-                label="Search..."
-                variant="outlined"
-                onChange={(event) =>
-                  this.props.searchFunctionality(event.target.value)
-                }
-              />
-            </div>
-            <Checkbox
-              color="primary"
-              inputProps={{ "aria-label": "secondary checkbox" }}
-              onChange={(event) => {
-                this.props.filterFunctionality(event.target.checked);
-              }}
+  return (
+    <div className="restroDishesLists">
+      <div className="restroDishesListsLeft">Left-section</div>
+      <div className="restroDishesListsMain">
+        <div className="searchAndFilter">
+          <div className="search">
+            <TextField
+              id="outlined-basic"
+              label="Search..."
+              variant="outlined"
+              onChange={(event) => searchFunctionality(event.target.value)}
             />
-            Veg Only
           </div>
-          {this.renderCompleteRestroList()}
+          <Checkbox
+            color="primary"
+            inputProps={{ "aria-label": "secondary checkbox" }}
+            onChange={(event) => {
+              filterFunctionality(event.target.checked);
+            }}
+          />
+          Veg Only
         </div>
-        <div className="restroDishesListsRight">{this.renderCartSection()}</div>
+        {renderCompleteRestroList()}
       </div>
-    );
-  }
-}
+      <div className="restroDishesListsRight">{renderCartSection()}</div>
+    </div>
+  );
+};
 
 export default RestroDetailsLists;

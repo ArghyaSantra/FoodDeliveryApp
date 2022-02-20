@@ -29,7 +29,7 @@ export class RestroPage extends Component {
     let searchedDishes = RestroDishes.filter((dish) => {
       return dish.details.name.toLowerCase().includes(searchTxt.toLowerCase());
     });
-    this.setState({ ...this.state, restro_dishes: searchedDishes });
+    this.setState({ restro_dishes: searchedDishes });
   };
 
   filterFunctionality = (choice) => {
@@ -40,7 +40,7 @@ export class RestroPage extends Component {
         return dish.details.choice.toLowerCase() === "veg";
       });
     }
-    this.setState({ ...this.state, restro_dishes: searchDishes });
+    this.setState({ restro_dishes: searchDishes });
   };
 
   dishClicked = ([dishdetails, ItemCount]) => {
@@ -48,16 +48,16 @@ export class RestroPage extends Component {
     this.setState((state) => {
       let updatedCart = state.cart;
       updatedCart.push(dishdetails);
-      return { ...this.state, cart: updatedCart };
+      return { cart: updatedCart };
     });
   };
 
   checkoutClicked = () => {
-    this.setState({ ...this.state, checkoutClick: true });
+    this.setState({ checkoutClick: true });
   };
 
   finalCheckoutClicked = () => {
-    this.setState({ ...this.state, finalCheckoutClicked: true });
+    this.setState({ finalCheckoutClicked: true });
   };
 
   getAddress = (address) => {
@@ -76,7 +76,7 @@ export class RestroPage extends Component {
         : address.value;
     }
     this.setState((state) => {
-      return { ...state, residenceDetails: updatedAddress };
+      return { residenceDetails: updatedAddress };
     });
   };
 

@@ -1,31 +1,25 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import BannerItem from "./bannerItem";
 import _ from "lodash";
 import "./bannerItems.css";
 import { getBannerItems } from "./bannerItems.Helper";
 
-export class BannerItems extends Component {
-  state = {
-    bannerItems: [],
-  };
+const BannerItems = () => {
+  const [bannerItems, setBannerItems] = useState();
 
-  componentDidMount() {
+  useEffect(() => {
     getBannerItems().then((BannerResponse) => {
-      this.setState({ bannerItems: BannerResponse });
+      setBannerItems(BannerResponse);
     });
-  }
+  }, []);
 
-  renderBannerItems = ({ id, details }) => {
+  const renderBannerItems = ({ id, details }) => {
     return <BannerItem key={id} details={details} />;
   };
 
-  render() {
-    return (
-      <div className="bannerItems">
-        {_.map(this.state.bannerItems, this.renderBannerItems)}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="bannerItems">{_.map(bannerItems, renderBannerItems)}</div>
+  );
+};
 
 export default BannerItems;
