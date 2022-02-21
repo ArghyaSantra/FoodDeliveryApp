@@ -13,16 +13,20 @@ import {
   Routes,
   Route,
   useNavigate,
+  Navigate,
 } from "react-router-dom";
 import Checkout from "./components/checkout";
 import CartContext from "./Context/CartContext";
 import AddressContext from "./Context/AddressContext";
+import CheckoutBtnContext from "./Context/CheckoutBtnContext";
+import OrderConfirmation from "./components/orderConfirmation";
 
 const App = () => {
   const [restroClickedFlag, setRestroClickedFlag] = useState(false);
   const navigate = useNavigate();
   const cartContext = useContext(CartContext);
   const addressContext = useContext(AddressContext);
+  const checkoutBtnContext = useContext(CheckoutBtnContext);
 
   const restroClicked = (restro) => {
     /* if (restro) {
@@ -50,6 +54,30 @@ const App = () => {
       return <RestroPage />;
     }
   }
+
+  function renderCheckout() {
+    //const { finalCheckoutClicked } = checkoutBtnContext;
+    return (
+      <Checkout
+        cartDetails={cartContext.cart}
+        finalCheckoutClicked={checkoutBtnContext.finalCheckoutClicked}
+      />
+    );
+  }
+
+  function renderOrderConfirmation() {
+    const { currentAddress } = addressContext;
+    const { cart } = cartContext;
+    return (
+      <div className="orderConfirmationMain">
+        <OrderConfirmation
+          residenceDetails={currentAddress}
+          cartDetails={cart}
+        />
+      </div>
+    );
+  }
+
   function renderFooter() {
     return <Footer />;
   }
@@ -63,18 +91,15 @@ const App = () => {
             path="/restro/:restroId"
             element={renderRestroDishesPage()}
           ></Route>
+          <Route path="/" element={<Navigate replace to="/restro" />}></Route>
           <Route
             path="/restro"
             element={renderRestroDetailsAndHighlights()}
           ></Route>
+          <Route path="/checkout" element={renderCheckout()}></Route>
           <Route
-            path="/checkout"
-            element={
-              <Checkout
-                cartDetails={cartContext.cart}
-                /*finalCheckoutClicked={this.finalCheckoutClicked}*/
-              />
-            }
+            path="/orderConfirmation"
+            element={renderOrderConfirmation()}
           ></Route>
         </Routes>
         {renderFooter()}

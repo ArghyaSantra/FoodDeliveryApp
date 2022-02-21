@@ -3,21 +3,19 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { CartProvider } from "./Context/CartContext";
 import { AddressProvider } from "./Context/AddressContext";
+import { CheckoutBtnProvider } from "./Context/CheckoutBtnContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AddressProvider>
         <CartProvider>
-          <App />
+          <CheckoutBtnProvider>
+            <App />
+          </CheckoutBtnProvider>
         </CartProvider>
       </AddressProvider>
     </Router>

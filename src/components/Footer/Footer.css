@@ -23,6 +23,9 @@
   margin-right: 20px !important;
 }
 
+.footerParent {
+  margin-top: 100px;
+}
 .suppportContactNumber {
   display: flex;
   text-align: left;

@@ -1,8 +1,9 @@
 .orderConfirmationParent {
   border: solid;
   border-width: 1px;
-  margin-top: 50px;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
   padding: 15px;
   width: 500px;
-  text-align: left;
 }
