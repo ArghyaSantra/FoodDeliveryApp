@@ -1,17 +1,17 @@
-.restroitem-parent {
+.restroItemParent {
   height: 350px;
   width: 275px;
   background-color: white;
   margin: 20px 10px;
 }
 
-.restroitem-parent:hover {
+.restroItemParent:hover {
   transform: scale(1.05);
   transition: all ease-out 0.5s;
   box-shadow: 1px 1px 8px 10px #e0dddd;
 }
 
-.restroitem-details {
+.restroitemDetails {
   margin: 15px 15px;
   height: 280px;
   display: flex;
@@ -20,13 +20,13 @@
   padding-bottom: 10px;
 }
 
-.restro-pic {
+.restroPic {
   height: 50%;
   width: 100%;
   object-fit: cover;
 }
 
-.restro-name {
+.rrestroName {
   text-align: left;
   justify-self: center;
   font-size: medium;
@@ -38,13 +38,13 @@
   color: gray;
 }
 
-.rating-and-eta {
+.ratingAndEta {
   display: flex;
   justify-content: space-between;
   font-size: smaller;
 }
 
-.star-rating {
+.starRating {
   font-size: 10px !important;
   margin-right: 5px !important;
 }
@@ -53,6 +53,6 @@
   color: brown;
 }
 
-.quick-view {
+.quickView {
   color: lightskyblue;
 }

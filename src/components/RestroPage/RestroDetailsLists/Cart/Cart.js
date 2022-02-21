@@ -1,11 +1,14 @@
 import React from "react";
-import "./Cart.css";
+import "./cart.css";
 import Button from "@material-ui/core/Button";
 import { filteredData } from "./index";
 
-function Cart({ cartDetails, ItemCount, checkoutClicked }) {
-  //let total = 0;
-
+function Cart({
+  cartDetails,
+  ItemCount,
+  checkoutClicked,
+  finalCheckoutClicked,
+}) {
   let [finalCartDetails, total] = filteredData(cartDetails);
   return (
     <div className="cart">
@@ -14,7 +17,7 @@ function Cart({ cartDetails, ItemCount, checkoutClicked }) {
       <p>{finalCartDetails.length} Item</p>
       <ul>
         {finalCartDetails.map((dishes) => {
-          return <li>1 {dishes.Name}</li>;
+          return <li>1 {dishes.name}</li>;
         })}
       </ul>
       <p className="Subtotal">
@@ -23,7 +26,11 @@ function Cart({ cartDetails, ItemCount, checkoutClicked }) {
       </p>
       <p> Total : ₹ {total}</p>
       <div className="btn-checkout">
-        <Button variant="contained" color="primary" onClick={checkoutClicked}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={checkoutClicked ? checkoutClicked : finalCheckoutClicked}
+        >
           Checkout
         </Button>
       </div>

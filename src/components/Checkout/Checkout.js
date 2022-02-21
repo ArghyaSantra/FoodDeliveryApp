@@ -1,17 +1,20 @@
 import React, { Component } from "react";
-import DeliveryDetails from "./DeliveryDetails";
-import Cart from "../RestroPage/RestroDetailsLists/Cart";
+import DeliveryDetails from "./deliveryDetails";
+import Cart from "../restroPage/restroDetailsLists/cart";
 
-import "./Checkout.css";
+import "./checkout.css";
 
 const Checkout = (props) => {
   return (
-    <div className="checkout-parent">
+    <div className="checkoutParent">
       <DeliveryDetails
         addressDetails={props.addressDetails}
         getAddress={props.getAddress}
       />
-      <Cart cartDetails={props.cartDetails} />
+      <Cart
+        cartDetails={props.cartDetails}
+        finalCheckoutClicked={props.finalCheckoutClicked}
+      />
     </div>
   );
 };

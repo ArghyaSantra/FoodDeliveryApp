@@ -1,0 +1,58 @@
+.itemParent {
+  height: 350px;
+  width: 275px;
+  background-color: white;
+  margin: 20px 10px;
+}
+
+.itemParent:hover {
+  transform: scale(1.05);
+  transition: all ease-out 0.5s;
+  box-shadow: 1px 1px 8px 10px #e0dddd;
+}
+
+.itemDetails {
+  margin: 15px 15px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.itemPic {
+  height: 50%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.itemName {
+  text-align: left;
+  justify-self: center;
+  font-size: medium;
+}
+
+.itemCuisine {
+  text-align: left;
+  font-size: smaller;
+  color: gray;
+}
+
+.itemRatingAndEta {
+  display: flex;
+  justify-content: space-between;
+  font-size: smaller;
+}
+
+.starRating {
+  font-size: 10px !important;
+  margin-right: 5px !important;
+}
+
+.itemOffers {
+  color: brown;
+}
+
+.quickView {
+  color: lightskyblue;
+}

@@ -1,7 +1,6 @@
-.restrolist
-{
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 20px;
-    justify-content: space-evenly;
+.restroList {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 20px;
+  justify-content: space-evenly;
 }

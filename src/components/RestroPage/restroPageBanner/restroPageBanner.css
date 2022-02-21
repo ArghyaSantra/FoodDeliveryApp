@@ -1,4 +1,4 @@
-.restro-page-banner {
+.restroPageBanner {
   width: 100%;
   height: 250px;
   background-color: black;
@@ -6,44 +6,44 @@
   display: flex;
 }
 
-.banner-left {
+.bannerLeft {
   display: flex;
   flex: 1;
   justify-content: flex-end;
   align-items: center;
 }
 
-.restro-pic-banner {
+.restroPicBanner {
   height: 175px;
   width: 300px;
 }
 
-.banner-center {
+.bannerCenter {
   flex: 1;
 }
 
-.restro-info {
+.restroInfo {
   display: flex;
 }
 
-.banner-ratings {
+.bannerRatings {
   flex: 1;
 }
 
-.star-rating {
+.starRating {
   font-size: 10px !important;
   margin-right: 5px !important;
 }
 
-.banner-eta {
+.bannerEta {
   flex: 1;
 }
 
-.banner-price {
+.bannerPrice {
   flex: 1;
 }
 
-.banner-right {
+.bannerRight {
   flex: 1;
   display: flex;
   text-align: left;
@@ -51,7 +51,7 @@
   justify-content: center;
 }
 
-.banner-offers {
+.bannerOffers {
   width: 300px;
   padding: 30px 10px;
   border-style: solid;

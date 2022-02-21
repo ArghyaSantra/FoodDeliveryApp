@@ -1,0 +1,31 @@
+import React from "react";
+import { SocialMediaIconsReact } from "social-media-icons-react";
+import { LINKS } from "./socialMediaLinks.Helper";
+import _ from "lodash";
+
+function SocialMediaLinks() {
+  const renderSocialMediaLinks = (LINK) => {
+    return (
+      <SocialMediaIconsReact
+        borderColor={LINK.borderColor}
+        borderWidth={LINK.borderWidth}
+        borderStyle={LINK.borderStyle}
+        icon={LINK.icon}
+        iconColor={LINK.iconColor}
+        backgroundColor={LINK.backgroundColor}
+        iconSize={LINK.iconSize}
+        roundness={LINK.roundness}
+        url={LINK.url}
+        size={LINK.size}
+      />
+    );
+  };
+
+  return (
+    <div className="socialMediaLink">
+      {_.map(LINKS, renderSocialMediaLinks)}
+    </div>
+  );
+}
+
+export default SocialMediaLinks;

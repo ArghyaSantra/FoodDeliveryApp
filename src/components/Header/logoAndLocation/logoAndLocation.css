@@ -1,0 +1,22 @@
+.logoAndLocation {
+  display: flex;
+  flex: 1;
+  margin-left: 50px;
+}
+
+.logoImg {
+  height: 60px;
+  width: 60x;
+  padding: 10px;
+}
+
+.location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.downIcon {
+  margin-top: 7.5px;
+  margin-left: 5px;
+}

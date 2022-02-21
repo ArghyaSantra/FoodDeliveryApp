@@ -1,7 +1,6 @@
-.highlights-inside
-{
-    width: 300px;
-    padding-top: 50px;
-    align-items: center;
-    justify-content: center;
+.highlightsInside {
+  width: 300px;
+  padding-top: 50px;
+  align-items: center;
+  justify-content: center;
 }
