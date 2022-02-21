@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import RestroItem from "./restroItem";
 import _ from "lodash";
 import "./restroLists.css";

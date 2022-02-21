@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { useContext } from "react";
 import TextField from "@material-ui/core/TextField";
 
 import "./deliveryDetails.css";
@@ -6,35 +6,28 @@ import AddressContext from "../../../Context/AddressContext";
 
 const DeliveryDetails = () => {
   const context = useContext(AddressContext);
-  function eventHandler(event) {
+  const eventHandler = (event) => {
     const { name, value } = event.target;
     const { changeCurrentAddress } = context;
     changeCurrentAddress(name, value);
-  }
+  };
 
+  function renderTxtField(txtField, label) {
+    return (
+      <TextField
+        id="outlined-basic"
+        name={txtField}
+        label={label}
+        variant="outlined"
+        onChange={eventHandler}
+      />
+    );
+  }
   return (
-    <div className="delivery-details-parent">
-      <TextField
-        id="outlined-basic"
-        name="address-txtfield"
-        label="Address"
-        variant="outlined"
-        onChange={eventHandler}
-      />
-      <TextField
-        id="outlined-basic"
-        name="flat-txtfield"
-        label="Door/Flat No."
-        variant="outlined"
-        onChange={eventHandler}
-      />
-      <TextField
-        id="outlined-basic"
-        name="landmark-txtfield"
-        label="Landmark"
-        variant="outlined"
-        onChange={eventHandler}
-      />
+    <div className="deliveryDetailsParent">
+      {renderTxtField("address-txtfield", "Address")}
+      {renderTxtField("flat-txtfield", "Door/Flat No.")}
+      {renderTxtField("landmark-txtfield", "Landmark")}
     </div>
   );
 };

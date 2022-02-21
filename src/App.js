@@ -5,16 +5,10 @@ import Header from "./components/header";
 import MainContent from "./components/mainContent";
 import Footer from "./components/footer";
 import RestroPage from "./components/restroPage";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import BannerItems from "./components/bannerItems";
 import { AppProvider } from "./Context/AppContext";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import Checkout from "./components/checkout";
 import CartContext from "./Context/CartContext";
 import AddressContext from "./Context/AddressContext";
@@ -22,17 +16,17 @@ import CheckoutBtnContext from "./Context/CheckoutBtnContext";
 import OrderConfirmation from "./components/orderConfirmation";
 
 const App = () => {
-  const [restroClickedFlag, setRestroClickedFlag] = useState(false);
+  /*Navigation*/
   const navigate = useNavigate();
+  /*Navigation*/
+
+  /*Multiple Context*/
   const cartContext = useContext(CartContext);
   const addressContext = useContext(AddressContext);
   const checkoutBtnContext = useContext(CheckoutBtnContext);
+  /*Multiple Context*/
 
   const restroClicked = (restro) => {
-    /* if (restro) {
-      setRestroClickedFlag(true);
-    }*/
-    console.log("restroClicked");
     navigate(`restro/${restro}`);
   };
 
@@ -56,11 +50,12 @@ const App = () => {
   }
 
   function renderCheckout() {
-    //const { finalCheckoutClicked } = checkoutBtnContext;
+    const { finalCheckoutClicked } = checkoutBtnContext;
+    const { cart } = cartContext;
     return (
       <Checkout
-        cartDetails={cartContext.cart}
-        finalCheckoutClicked={checkoutBtnContext.finalCheckoutClicked}
+        cartDetails={cart}
+        finalCheckoutClicked={finalCheckoutClicked}
       />
     );
   }
@@ -81,7 +76,6 @@ const App = () => {
   function renderFooter() {
     return <Footer />;
   }
-  //const { currentRestro, changeCurrentRestro } = this.context;
   return (
     <div className="App">
       <AppProvider>

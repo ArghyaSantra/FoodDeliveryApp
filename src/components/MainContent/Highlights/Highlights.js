@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Highlight from "./highlight";
 import _ from "lodash";
 

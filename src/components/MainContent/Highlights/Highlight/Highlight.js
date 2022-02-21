@@ -1,13 +1,8 @@
-import React, { Component } from "react";
-import ErrorBoundary from "../../../errorBoundary/ErrorBoundary";
+import React from "react";
 import "./highlight.css";
 
 const Highlight = ({ details, highlightClicked }) => {
-  console.log("details");
-  console.log(details);
   const { title, iconClass, options } = details;
-  console.log("title");
-  console.log(title);
   return (
     <div className="highlight" onClick={() => highlightClicked(title)}>
       <span className="highlightLogo">

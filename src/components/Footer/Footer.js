@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { SocialMediaIconsReact } from "social-media-icons-react";
 
 import "./footer.css";
 import SocialMediaLinks from "./socialMediaLinks";
@@ -15,7 +14,7 @@ const Footer = () => {
         <br />
         <span className="suppportEmailAddress">
           <i class="fi fi-rr-envelope"></i>
-          <div className="support-details">supportteam@swiggy.com</div>
+          <div className="supportDetails">supportteam@swiggy.com</div>
         </span>
       </div>
       <div className="socialMediaLinks">

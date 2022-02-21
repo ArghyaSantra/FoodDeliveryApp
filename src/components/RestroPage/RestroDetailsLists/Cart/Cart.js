@@ -8,24 +8,23 @@ function Cart({
   ItemCount,
   checkoutClicked,
   finalCheckoutClicked,
+  orderConfirmationPage,
 }) {
   let [finalCartDetails, total] = filteredData(cartDetails);
-  return (
-    <div className="cart">
-      <h1>Cart</h1>
-      <p>from Kitchens of Punjab</p>
-      <p>{finalCartDetails.length} Item</p>
-      <ul>
-        {finalCartDetails.map((dishes) => {
-          return <li>1 {dishes.name}</li>;
-        })}
-      </ul>
-      <p className="Subtotal">
-        Subtotal
-        <span>Extra charges may apply</span>
-      </p>
-      <p> Total : ₹ {total}</p>
-      <div className="btn-checkout">
+
+  function renderItemList() {
+    return finalCartDetails.map((dishes, id) => {
+      return <li key={id}>1 {dishes.name}</li>;
+    });
+  }
+
+  function decideHeading() {
+    return orderConfirmationPage ? "Order" : "Cart";
+  }
+
+  function renderCheckoutBtn() {
+    return (
+      !orderConfirmationPage && (
         <Button
           variant="contained"
           color="primary"
@@ -33,7 +32,21 @@ function Cart({
         >
           Checkout
         </Button>
-      </div>
+      )
+    );
+  }
+  return (
+    <div className="cart">
+      <h1>{decideHeading()}</h1>
+      <p>from Kitchens of Punjab</p>
+      <p>{finalCartDetails.length} Item</p>
+      <ul>{renderItemList()}</ul>
+      <p className="Subtotal">
+        Subtotal
+        <span>Extra charges may apply</span>
+      </p>
+      <p> Total : ₹ {total}</p>
+      <div className="btn-checkout">{renderCheckoutBtn()}</div>
     </div>
   );
 }

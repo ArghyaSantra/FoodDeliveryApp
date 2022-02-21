@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Highlights from "./highlights";
 import RestroLists from "./restroLists";
 import "./mainContent.css";

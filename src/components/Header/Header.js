@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import "./header.css";
 import LogoAndLocation from "./logoAndLocation";
 import options from "./tabOptions/tabOptions.Helper";
@@ -8,7 +8,6 @@ import TabOptions from "./tabOptions";
 //
 
 const Header = () => {
-  const [tabOptions, setTabOptions] = useState([]);
   function renderLogoAndLocation() {
     return <LogoAndLocation />;
   }

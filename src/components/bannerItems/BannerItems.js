@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import BannerItem from "./bannerItem";
 import _ from "lodash";
 import "./bannerItems.css";

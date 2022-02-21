@@ -1,20 +1,19 @@
-import React, { Component, useContext } from "react";
-import AppContext from "../../Context";
+import React, { useContext } from "react";
+import AddressContext from "../../Context/AddressContext";
+import Cart from "../restroPage/restroDetailsLists/cart";
 import "./orderConfirmation.css";
 
-const OrderConfirmation = (props) => {
-  const context = useContext(AppContext);
+const OrderConfirmation = ({ cartDetails }) => {
+  const context = useContext(AddressContext);
 
   const { currentAddress } = context;
+  const { firstLine, secondLine, thirdLine } = currentAddress;
 
   return (
     <div className="orderConfirmationParent">
-      {/*<h2> Address:</h2>
-        <br />
-        <p>{currentAddress.firstLine}</p>
-        <p>{currentAddress.secondLine}</p>
-        <p>{currentAddress.thirdLine}</p>
-        <p>{this.props.cartDetails}</p>*/}
+      <p> Address: {firstLine + "," + secondLine + "," + thirdLine}</p>
+      <br />
+      <Cart cartDetails={cartDetails} orderConfirmationPage={true} />
       <p>Order Successfully Placed!!!</p>
     </div>
   );
