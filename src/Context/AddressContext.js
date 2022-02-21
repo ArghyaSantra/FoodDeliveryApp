@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 
-const AppContext = React.createContext();
+const AddressContext = React.createContext();
 
-export class AppProvider extends Component {
+export class AddressProvider extends Component {
   state = {
-    currentRestro: null,
     currentAddress: {
       firstLine: null,
       secondLine: null,
@@ -12,50 +11,39 @@ export class AppProvider extends Component {
     },
   };
 
-  changeCurrentRestro = (restroClicked) => {
-    this.setState({
-      currentRestro: restroClicked,
-    });
-  };
-
   changeCurrentAddress = (name, value) => {
     if (name === "address-txtfield") {
       this.setState({
-        ...this.state,
         currentAddress: { ...this.state.currentAddress, firstLine: value },
       });
     }
     if (name === "flat-txtfield") {
       this.setState({
-        ...this.state,
         currentAddress: { ...this.state.currentAddress, secondLine: value },
       });
     }
     if (name === "landmark-txtfield") {
       this.setState({
-        ...this.state,
         currentAddress: { ...this.state.currentAddress, thirdLine: value },
       });
     }
   };
 
   render() {
-    const { currentRestro, currentAddress } = this.state;
-    const { changeCurrentRestro, changeCurrentAddress } = this;
+    const { currentAddress } = this.state;
+    const { changeCurrentAddress } = this;
     const { children } = this.props;
     return (
-      <AppContext.Provider
+      <AddressContext.Provider
         value={{
-          currentRestro,
           currentAddress,
-          changeCurrentRestro,
           changeCurrentAddress,
         }}
       >
         {children}
-      </AppContext.Provider>
+      </AddressContext.Provider>
     );
   }
 }
 
-export default AppContext;
+export default AddressContext;

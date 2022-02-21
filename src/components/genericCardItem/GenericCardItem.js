@@ -1,6 +1,5 @@
 import React from "react";
 import "./genericCardItem.css";
-import WithHover from "../withHover/WithHover";
 
 function GenericCardItem({ details, onClickEvent }) {
   const { name, picId, tags, eta, ratings, price, offers } = details;
@@ -9,7 +8,7 @@ function GenericCardItem({ details, onClickEvent }) {
       <div className="itemDetails">
         <img className="itemPic" src={picId} />
         <span className="itemName">{name}</span>
-        <span className="itemCuisine">{tags.join()}</span>
+        <span className="itemCuisine">{tags?.join()}</span>
         <div className="itemRatingAndEta">
           <span>
             <i class="fi fi-rr-star starRating"></i>

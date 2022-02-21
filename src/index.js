@@ -9,11 +9,17 @@ import {
   Route,
   useNavigate,
 } from "react-router-dom";
+import { CartProvider } from "./Context/CartContext";
+import { AddressProvider } from "./Context/AddressContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <AddressProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </AddressProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

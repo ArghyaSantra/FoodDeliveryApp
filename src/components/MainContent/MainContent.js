@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Highlights from "./highlights";
 import RestroLists from "./restroLists";
 import "./mainContent.css";
@@ -6,63 +6,47 @@ import { getHighlightsList } from "./highlights/highlight/highights.Helper";
 import { getRestroList } from "./restroLists/restroLists.Helper";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 
-export class MainContent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      restrolist: [],
-      highlights: [],
-      hightlightPicked: null,
-    };
-  }
+const MainContent = (props) => {
+  const [restrolist, setRestrolist] = useState([]);
+  const [highlights, setHighlights] = useState([]);
+  const [hightlightPicked, setHightlightPicked] = useState(null);
 
-  componentDidMount() {
+  useEffect(() => {
     Promise.all([getRestroList(), getHighlightsList()]).then((values) => {
-      this.setState({
-        highlights: values[1],
-        restrolist: values[0],
-      });
+      setHighlights(values[1]);
+      setRestrolist(values[0]);
     });
-  }
-  restroClicked = (restro) => {
-    this.props.restroClicked(restro);
+  }, []);
+
+  useEffect(() => {
+    getRestroList(hightlightPicked).then((values) => {
+      setRestrolist(values);
+    });
+  }, [hightlightPicked]);
+
+  const restroClicked = (restro) => {
+    props.restroClicked(restro);
   };
 
-  highlightClicked = (highlightName) => {
-    this.setState({ ...this.state, hightlightPicked: highlightName });
+  const highlightClicked = (highlightName) => {
+    setHightlightPicked(highlightName);
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (
-      this.state.hightlightPicked &&
-      prevState.hightlightPicked !== this.state.hightlightPicked
-    ) {
-      getRestroList(this.state.hightlightPicked).then((values) => {
-        this.setState({ ...this.state, restrolist: values });
-      });
-    }
-  }
-
-  render() {
-    return (
-      <div className="mainContent">
-        <div className="highLights">
-          <ErrorBoundary>
-            <Highlights
-              highlights={this.state.highlights}
-              highlightClicked={this.highlightClicked}
-            />
-          </ErrorBoundary>
-        </div>
-        <div className="restroLists">
-          <RestroLists
-            restroClicked={this.restroClicked}
-            restroList={this.state.restrolist}
+  return (
+    <div className="mainContent">
+      <div className="highLights">
+        <ErrorBoundary>
+          <Highlights
+            highlights={highlights}
+            highlightClicked={highlightClicked}
           />
-        </div>
+        </ErrorBoundary>
       </div>
-    );
-  }
-}
+      <div className="restroLists">
+        <RestroLists restroClicked={restroClicked} restroList={restrolist} />
+      </div>
+    </div>
+  );
+};
 
 export default MainContent;

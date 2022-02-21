@@ -7,10 +7,7 @@ import "./checkout.css";
 const Checkout = (props) => {
   return (
     <div className="checkoutParent">
-      <DeliveryDetails
-        addressDetails={props.addressDetails}
-        getAddress={props.getAddress}
-      />
+      <DeliveryDetails addressDetails={props.addressDetails} />
       <Cart
         cartDetails={props.cartDetails}
         finalCheckoutClicked={props.finalCheckoutClicked}

@@ -5,6 +5,7 @@ import Checkout from "../checkout";
 import OrderConfirmation from "../orderConfirmation";
 import { getRestroDishes } from "./restroPage.Helper";
 import "./restroPage.css";
+import CartContext from "../../Context/CartContext";
 
 export class RestroPage extends Component {
   state = {
@@ -15,6 +16,8 @@ export class RestroPage extends Component {
     finalCheckoutClicked: false,
     residenceDetails: { FirstLine: "", SecondLine: "", ThirdLine: "" },
   };
+
+  static contextType = CartContext;
 
   restroDishesFixed = [];
   componentDidMount() {
@@ -44,10 +47,12 @@ export class RestroPage extends Component {
   };
 
   dishClicked = ([dishdetails, ItemCount]) => {
+    const { changeCartDetails } = this.context;
     this.setState({ ItemCount: ItemCount });
     this.setState((state) => {
       let updatedCart = state.cart;
       updatedCart.push(dishdetails);
+      changeCartDetails(updatedCart);
       return { cart: updatedCart };
     });
   };
@@ -101,7 +106,7 @@ export class RestroPage extends Component {
     return (
       <Checkout
         cartDetails={this.state.cart}
-        getAddress={this.getAddress}
+        /*getAddress={this.getAddress}*/
         finalCheckoutClicked={this.finalCheckoutClicked}
       />
     );
