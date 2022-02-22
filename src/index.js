@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { CartProvider } from "./Context/CartContext";
 import { AddressProvider } from "./Context/AddressContext";
 import { CheckoutBtnProvider } from "./Context/CheckoutBtnContext";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
   <React.StrictMode>
