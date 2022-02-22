@@ -3,8 +3,9 @@ import "./genericCardItem.css";
 
 function GenericCardItem({ details, onClickEvent }) {
   const { name, picId, tags, eta, ratings, price, offers } = details;
+  const eventHandler = (event) => onClickEvent(name);
   return (
-    <div className="itemParent" onClick={(event) => onClickEvent(name)}>
+    <div className="itemParent" onClick={eventHandler}>
       <div className="itemDetails">
         <img className="itemPic" src={picId} />
         <span className="itemName">{name}</span>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./tabOptions.css";
 //Importing componenents
 import TabOption from "./tabOption";

@@ -9,18 +9,14 @@ import TextField from "@material-ui/core/TextField";
 
 const RestroDetailsLists = (props) => {
   const {
-    dishClicked,
     restroDishes,
-    cartDetails,
-    checkoutClicked,
+    //checkoutClicked,
     searchFunctionality,
     filterFunctionality,
   } = props;
 
   const renderRestroDetailsLists = ({ id, details }) => {
-    return (
-      <RestroDetailList key={id} details={details} dishClicked={dishClicked} />
-    );
+    return <RestroDetailList key={id} details={details} />;
   };
 
   function renderCompleteRestroList() {
@@ -28,7 +24,7 @@ const RestroDetailsLists = (props) => {
   }
 
   function renderCartSection() {
-    return <Cart cartDetails={cartDetails} checkoutClicked={checkoutClicked} />;
+    return <Cart />; //checkoutClicked={checkoutClicked} />;
   }
 
   return (

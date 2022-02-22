@@ -1,15 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 
 import "./deliveryDetails.css";
-import AddressContext from "../../../Context/AddressContext";
+import { changeCurrentAddress } from "./deliveryDetails.Helper";
+import { useDispatch, useSelector } from "react-redux";
+import { changeAddressDetails } from "../../../Redux/actions";
 
 const DeliveryDetails = () => {
-  const context = useContext(AddressContext);
+  const currentAddress = useSelector((state) => state.address.currentAddress);
+  const dispatch = useDispatch();
+
   const eventHandler = (event) => {
     const { name, value } = event.target;
-    const { changeCurrentAddress } = context;
-    changeCurrentAddress(name, value);
+    const updatedAddress = changeCurrentAddress(currentAddress, name, value);
+    dispatch(changeAddressDetails(updatedAddress));
   };
 
   function renderTxtField(txtField, label) {

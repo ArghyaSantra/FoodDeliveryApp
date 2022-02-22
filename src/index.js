@@ -8,18 +8,24 @@ import { CartProvider } from "./Context/CartContext";
 import { AddressProvider } from "./Context/AddressContext";
 import { CheckoutBtnProvider } from "./Context/CheckoutBtnContext";
 import { Provider } from "react-redux";
+import { store } from "./Redux";
+import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <AddressProvider>
+    <ErrorBoundary>
+      <Router>
+        {/*<AddressProvider>
         <CartProvider>
-          <CheckoutBtnProvider>
-            <App />
-          </CheckoutBtnProvider>
+      <CheckoutBtnProvider>*/}
+        <Provider store={store}>
+          <App />
+        </Provider>
+        {/*</CheckoutBtnProvider>
         </CartProvider>
-      </AddressProvider>
-    </Router>
+          </AddressProvider>*/}
+      </Router>
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById("root")
 );

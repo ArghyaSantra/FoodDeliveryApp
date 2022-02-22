@@ -1,17 +1,19 @@
-import React, { useContext } from "react";
-import AddressContext from "../../Context/AddressContext";
+import React from "react";
+import { useSelector } from "react-redux";
 import Cart from "../restroPage/restroDetailsLists/cart";
 import "./orderConfirmation.css";
 
 const OrderConfirmation = ({ cartDetails }) => {
-  const context = useContext(AddressContext);
+  const currentAddress = useSelector((state) => state.address.currentAddress);
 
-  const { currentAddress } = context;
   const { firstLine, secondLine, thirdLine } = currentAddress;
 
   return (
     <div className="orderConfirmationParent">
-      <p> Address: {firstLine + "," + secondLine + "," + thirdLine}</p>
+      <h2> Address: </h2>
+      <h3>{firstLine} ,</h3>
+      <h3>{secondLine} ,</h3>
+      <h3>{thirdLine}</h3>
       <br />
       <Cart cartDetails={cartDetails} orderConfirmationPage={true} />
       <p>Order Successfully Placed!!!</p>

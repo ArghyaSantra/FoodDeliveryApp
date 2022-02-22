@@ -1,25 +1,20 @@
-import React, { Component, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import RestroDetailsLists from "./restroDetailsLists";
 import RestroPageBanner from "./restroPageBanner";
 import Checkout from "../checkout";
 import OrderConfirmation from "../orderConfirmation";
 import { getRestroDishes } from "./restroPage.Helper";
 import "./restroPage.css";
-import CartContext from "../../Context/CartContext";
-import AddressContext from "../../Context/AddressContext";
-import { useNavigate } from "react-router-dom";
-import CheckoutBtnContext from "../../Context/CheckoutBtnContext";
+import { useSelector } from "react-redux";
 
 let restroDishesFixed = [];
 
 const RestroPage = () => {
-  const [cart, setCart] = useState([]);
-  const [ItemCount, setItemCount] = useState(0);
   const [restroDishes, setRestroDishes] = useState([]);
+  const currentOrder = useSelector((state) => state.orderDetails.orderDetails);
 
-  const cartContext = useContext(CartContext);
-  const addressContext = useContext(AddressContext);
-  const checkoutBtnContext = useContext(CheckoutBtnContext);
+  const checkoutDetails = useSelector((state) => state.checkout);
+  const { checkoutClickedFlag, finalCheckoutClickedFlag } = checkoutDetails;
 
   useEffect(() => {
     getRestroDishes().then((RestroDishesResponse) => {
@@ -47,60 +42,35 @@ const RestroPage = () => {
     setRestroDishes(filteredDishes);
   };
 
-  const dishClicked = ([dishdetails, ItemCount]) => {
-    const { changeCartDetails } = cartContext;
-    setItemCount(ItemCount);
-    let updatedCart = cart;
-    updatedCart.push(dishdetails);
-    changeCartDetails(updatedCart);
-  };
-
   function renderRestroPageBanner() {
     return <RestroPageBanner />;
   }
 
   function renderRestroDetailsLists() {
-    const { cart } = cartContext;
-    const { checkoutClicked } = checkoutBtnContext;
     return (
       <RestroDetailsLists
         restroDishes={restroDishes}
         searchFunctionality={searchFunctionality}
         filterFunctionality={filterFunctionality}
-        dishClicked={dishClicked}
-        cartDetails={cart}
-        checkoutClicked={checkoutClicked}
       />
     );
   }
 
   function renderCheckoutPage() {
-    const { cart } = cartContext;
-    const { finalCheckoutClicked } = checkoutBtnContext;
-    return (
-      <Checkout
-        cartDetails={cart}
-        finalCheckoutClicked={finalCheckoutClicked}
-      />
-    );
+    return <Checkout cartDetails={currentOrder} />;
   }
 
   function renderOrderConfirmation() {
-    const { currentAddress } = addressContext;
-    const { cart } = cartContext;
-    return (
-      <OrderConfirmation residenceDetails={currentAddress} cartDetails={cart} />
-    );
+    return <OrderConfirmation cartDetails={currentOrder} />;
   }
 
-  const { checkoutClickFlag, finalCheckoutClickFlag } = checkoutBtnContext;
   return (
     <div className="restroPageParent">
       {renderRestroPageBanner()}
-      {!checkoutClickFlag && <>{renderRestroDetailsLists()}</>}
-      {checkoutClickFlag && (
+      {!checkoutClickedFlag && <>{renderRestroDetailsLists()}</>}
+      {checkoutClickedFlag && (
         <div className="restroPageCheckoutPage">
-          {finalCheckoutClickFlag
+          {finalCheckoutClickedFlag
             ? renderOrderConfirmation()
             : renderCheckoutPage()}
         </div>

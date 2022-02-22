@@ -2,13 +2,21 @@ import React from "react";
 import "./restroDetailList.css";
 import Button from "@material-ui/core/Button";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { changeOrderDetails } from "../../../../Redux/actions";
 
 function RestroDetailList({ id, details, dishClicked }) {
-  /*let itemCount = 0;
-  const itemCounter = (count) => {
-    itemCount = count;
-  };*/
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const currentOrderDetails = useSelector(
+    (state) => state.orderDetails.orderDetails
+  );
+  const dishAdd = () => {
+    currentOrderDetails.push(details);
+    dispatch(changeOrderDetails(currentOrderDetails));
+  };
+
   return (
     <div className="restroDetailList">
       <div className="restroDetailListInfo">
@@ -19,14 +27,7 @@ function RestroDetailList({ id, details, dishClicked }) {
       <div className="restroDetailListImage">
         <img className="dishPic" src={details.picId} />
         {/*<CartCounterButton itemCount={itemCount} />*/}
-        <Button
-          variant="contained"
-          color="default"
-          onClick={() => {
-            dishClicked([details]);
-            //navigate("/checkout");
-          }}
-        >
+        <Button variant="contained" color="default" onClick={dishAdd}>
           Add
         </Button>
       </div>

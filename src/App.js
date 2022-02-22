@@ -10,25 +10,12 @@ import BannerItems from "./components/bannerItems";
 import { AppProvider } from "./Context/AppContext";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import Checkout from "./components/checkout";
-import CartContext from "./Context/CartContext";
-import AddressContext from "./Context/AddressContext";
-import CheckoutBtnContext from "./Context/CheckoutBtnContext";
 import OrderConfirmation from "./components/orderConfirmation";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  /*Navigation*/
-  const navigate = useNavigate();
-  /*Navigation*/
-
-  /*Multiple Context*/
-  const cartContext = useContext(CartContext);
-  const addressContext = useContext(AddressContext);
-  const checkoutBtnContext = useContext(CheckoutBtnContext);
-  /*Multiple Context*/
-
-  const restroClicked = (restro) => {
-    navigate(`restro/${restro}`);
-  };
+  const restroChosen = useSelector((state) => state.selectRestro.restroChosen);
+  console.log(useSelector((state) => state));
 
   function renderHeader() {
     return <Header />;
@@ -38,7 +25,7 @@ const App = () => {
     return (
       <>
         <BannerItems />
-        <MainContent restroClicked={restroClicked} />
+        <MainContent />
       </>
     );
   }
@@ -50,25 +37,13 @@ const App = () => {
   }
 
   function renderCheckout() {
-    const { finalCheckoutClicked } = checkoutBtnContext;
-    const { cart } = cartContext;
-    return (
-      <Checkout
-        cartDetails={cart}
-        finalCheckoutClicked={finalCheckoutClicked}
-      />
-    );
+    return <Checkout />;
   }
 
   function renderOrderConfirmation() {
-    const { currentAddress } = addressContext;
-    const { cart } = cartContext;
     return (
       <div className="orderConfirmationMain">
-        <OrderConfirmation
-          residenceDetails={currentAddress}
-          cartDetails={cart}
-        />
+        <OrderConfirmation />
       </div>
     );
   }
@@ -76,6 +51,7 @@ const App = () => {
   function renderFooter() {
     return <Footer />;
   }
+
   return (
     <div className="App">
       <AppProvider>

@@ -1,16 +1,48 @@
 import React from "react";
 import "./cart.css";
 import Button from "@material-ui/core/Button";
-import { filteredData } from "./index";
+import { filteredData } from "./cart.Helper";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  changeCheckoutStatus,
+  changeFinalCheckoutStatus,
+} from "../../../../Redux/actions";
 
 function Cart({
-  cartDetails,
-  ItemCount,
-  checkoutClicked,
-  finalCheckoutClicked,
+  //checkoutClicked,
+  //finalCheckoutClicked,
   orderConfirmationPage,
 }) {
-  let [finalCartDetails, total] = filteredData(cartDetails);
+  const currentOrder = useSelector((state) => state.orderDetails.orderDetails);
+  let [finalCartDetails, total] = filteredData(currentOrder);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  function checkoutClicked() {
+    dispatch(changeCheckoutStatus());
+    //setCheckoutClickFlag(true);
+    navigate("/checkout");
+  }
+
+  function finalCheckoutClicked() {
+    dispatch(changeFinalCheckoutStatus());
+    //setFinalCheckoutClickFlag(true);
+    navigate("/orderConfirmation"); // need to modify this....
+  }
+
+  function chooseRightFunctionForCheckout() {
+    const path = location.pathname;
+    let fn;
+    if (path.includes("restro")) {
+      fn = checkoutClicked;
+    } else {
+      fn = finalCheckoutClicked;
+    }
+    return fn;
+  }
 
   function renderItemList() {
     return finalCartDetails.map((dishes, id) => {
@@ -28,7 +60,7 @@ function Cart({
         <Button
           variant="contained"
           color="primary"
-          onClick={checkoutClicked ? checkoutClicked : finalCheckoutClicked}
+          onClick={chooseRightFunctionForCheckout()}
         >
           Checkout
         </Button>

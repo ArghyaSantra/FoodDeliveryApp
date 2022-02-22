@@ -4,18 +4,12 @@ import Cart from "../restroPage/restroDetailsLists/cart";
 
 import "./checkout.css";
 
-const Checkout = (props) => {
-  const { addressDetails, finalCheckoutClicked, cartDetails } = props;
+const Checkout = () => {
   function renderDeliveryDetails() {
-    return <DeliveryDetails addressDetails={addressDetails} />;
+    return <DeliveryDetails />;
   }
   function renderCart() {
-    return (
-      <Cart
-        cartDetails={cartDetails}
-        finalCheckoutClicked={finalCheckoutClicked}
-      />
-    );
+    return <Cart />;
   }
   return (
     <div className="checkoutParent">

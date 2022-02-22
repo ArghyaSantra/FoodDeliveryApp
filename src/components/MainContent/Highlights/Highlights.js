@@ -3,25 +3,15 @@ import Highlight from "./highlight";
 import _ from "lodash";
 
 import "./highlights.css";
-import ErrorBoundary from "../../errorBoundary/ErrorBoundary";
 
-const Highlights = ({ highlights, highlightClicked }) => {
+const Highlights = ({ highlights }) => {
   function renderHighlights({ id, details }) {
-    return (
-      <Highlight
-        key={id}
-        details={details}
-        highlightClicked={highlightClicked}
-      />
-    );
+    return <Highlight key={id} details={details} />;
   }
-  //throw new Error("Something went wrong!!!");
   return (
-    <ErrorBoundary>
-      <div className="highlightsInside">
-        {_.map(highlights, renderHighlights)}
-      </div>
-    </ErrorBoundary>
+    <div className="highlightsInside">
+      {_.map(highlights, renderHighlights)}
+    </div>
   );
 };
 

@@ -5,10 +5,10 @@ import { backGroundStyleBuilder } from "./BannerItem.Helper";
 const BannerItem = ({ details }) => {
   const { picId, bannerText, bannerUnderline } = details;
   return (
-    <div className="banneritem" style={backGroundStyleBuilder(picId)}>
-      <div className="banner-details">
-        <span className="banner-text">{bannerText}</span>
-        <span className="banner-underline">{bannerUnderline}</span>
+    <div className="bannerItem" style={backGroundStyleBuilder(picId)}>
+      <div className="bannerDetails">
+        <span className="bannerText">{bannerText}</span>
+        <span className="bannerUnderline">{bannerUnderline}</span>
       </div>
     </div>
   );

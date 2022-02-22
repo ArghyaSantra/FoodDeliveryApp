@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import AppContext from "../../../Context";
+import { useSelector } from "react-redux";
 import "./restroPageBanner.css";
 
 const RestroPageBanner = () => {
-  const { currentRestro, changeCurrentRestro } = useContext(AppContext);
+  const currentRestro = useSelector((state) => state.selectRestro.restroChosen);
   return (
     <div class="restroPageBanner">
       <div className="bannerLeft">

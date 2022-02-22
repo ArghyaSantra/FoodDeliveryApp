@@ -4,12 +4,15 @@ import RestroLists from "./restroLists";
 import "./mainContent.css";
 import { getHighlightsList } from "./highlights/highlight/highights.Helper";
 import { getRestroList } from "./restroLists/restroLists.Helper";
-import ErrorBoundary from "../errorBoundary/ErrorBoundary";
+import { useSelector } from "react-redux";
 
-const MainContent = (props) => {
+const MainContent = () => {
   const [restrolist, setRestrolist] = useState([]);
   const [highlights, setHighlights] = useState([]);
-  const [hightlightPicked, setHightlightPicked] = useState(null);
+
+  const highlightChosen = useSelector(
+    (state) => state.hightlightSelect.highlightChosen
+  );
 
   useEffect(() => {
     Promise.all([getRestroList(), getHighlightsList()]).then((values) => {
@@ -19,31 +22,18 @@ const MainContent = (props) => {
   }, []);
 
   useEffect(() => {
-    getRestroList(hightlightPicked).then((values) => {
+    getRestroList(highlightChosen).then((values) => {
       setRestrolist(values);
     });
-  }, [hightlightPicked]);
-
-  const restroClicked = (restro) => {
-    props.restroClicked(restro);
-  };
-
-  const highlightClicked = (highlightName) => {
-    setHightlightPicked(highlightName);
-  };
+  }, [highlightChosen]);
 
   return (
     <div className="mainContent">
       <div className="highLights">
-        <ErrorBoundary>
-          <Highlights
-            highlights={highlights}
-            highlightClicked={highlightClicked}
-          />
-        </ErrorBoundary>
+        <Highlights highlights={highlights} />
       </div>
       <div className="restroLists">
-        <RestroLists restroClicked={restroClicked} restroList={restrolist} />
+        <RestroLists restroList={restrolist} />
       </div>
     </div>
   );
