@@ -4,13 +4,9 @@ const useLoader = (getDataFn) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  /*const storeData = (values) => {
-    setData(values);
-  };*/
-
   useEffect(() => {
-    getDataFn().then((state) => {
-      setData(state);
+    getDataFn().then((value) => {
+      setData(value);
       setIsLoading(false);
     });
   }, [getDataFn]);

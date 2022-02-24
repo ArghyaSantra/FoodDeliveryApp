@@ -13,7 +13,7 @@ const MainContent = () => {
   //From Local State of the component
   const [highlightChosen, setHighlightChosen] = useState("Offers Near You");
   //From Redux Store
-  const highlightsList = useSelector(getHighlightListSelector);
+  /*const highlightsList = useSelector(getHighlightListSelector);
   const restroList = useSelector(getRestrosSelector);
 
   const dispatch = useDispatch();
@@ -23,27 +23,27 @@ const MainContent = () => {
       dispatch(setHighlights(values[1]));
       dispatch(setRestros(values[0]));
     });
-  }, []);
+  }, []);*/
 
   const highlightClicked = (highlight) => {
     setHighlightChosen(highlight);
   };
 
-  function getRestroListBasedOnHighlight() {
+  /*function getRestroListBasedOnHighlight() {
     return restroList[highlightChosen];
-  }
+  }*/
 
   return (
     <div className="mainContent">
       <div className="highLights">
         <Highlights
-          highlights={highlightsList}
+          //highlights={highlightsList}
           onHighlightClicked={highlightClicked}
         />
       </div>
       <div className="restroLists">
         <RestroLists
-          restroList={getRestroListBasedOnHighlight()}
+          //restroList={getRestroListBasedOnHighlight()}
           highlightChosen={highlightChosen}
         />
       </div>

@@ -23,6 +23,7 @@ const RestroDishesPage = () => {
 
   const params = useParams();
   const { restroId } = params;
+
   //Need to make a query param related HOC to pass id
   useEffect(() => {
     getRestroDishes(restroId).then((RestroDishesResponse) => {

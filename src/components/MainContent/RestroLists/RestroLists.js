@@ -1,11 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import RestroItem from "./restroItem";
 import _ from "lodash";
 import "./restroLists.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getRestrosSelector } from "../../../Redux/selectors/restroRelatedSelectors";
+import { setRestros } from "../../../Redux/actions";
+import { getRestroList } from "./restroLists.Helper";
+import useLoader from "../../customHooks/useLoader";
+import useLoaderAndRedux from "../../customHooks/useLoaderAndRedux";
 
-const RestroLists = ({ restroList, highlightChosen }) => {
+const RestroLists = ({ /*restroList,*/ highlightChosen }) => {
+  /*const dispatch = useDispatch();
+  const restroList = useSelector(getRestrosSelector);
+
+  //useLoader(getRestroList,"redux",setRestros,getRestrosSelector);
+
+  useEffect(() => {
+    getRestroList().then((values) => {
+      dispatch(setRestros(values));
+    });
+  }, []);*/
+
+  //Use of Custom Hook
+
+  const { data, isLoading } = useLoaderAndRedux(
+    getRestroList,
+    setRestros,
+    getRestrosSelector
+  );
+
+  const restroList = data[highlightChosen];
+  console.log("restroList");
+  console.log(restroList);
+
   function renderRestroItems({ id, details }) {
-    //const { id, details } = restroitem;
     return (
       <RestroItem
         key={id}
@@ -21,7 +49,20 @@ const RestroLists = ({ restroList, highlightChosen }) => {
       <div className="restroList">{_.map(restroList, renderRestroItems)}</div>
     );
   }
-  return renderRestroList();
+
+  function properLoading(isLoading) {
+    if (isLoading) {
+      return (
+        <div className="restroList">
+          <h1>Loading...</h1>
+        </div>
+      );
+    } else {
+      return renderRestroList();
+    }
+  }
+
+  return properLoading(isLoading);
 };
 
 export default RestroLists;
