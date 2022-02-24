@@ -3,10 +3,17 @@ import RestroItem from "./restroItem";
 import _ from "lodash";
 import "./restroLists.css";
 
-const RestroLists = ({ restroList }) => {
-  function renderRestroItems(restroitem) {
-    const { id, details } = restroitem;
-    return <RestroItem key={id} details={details} />;
+const RestroLists = ({ restroList, highlightChosen }) => {
+  function renderRestroItems({ id, details }) {
+    //const { id, details } = restroitem;
+    return (
+      <RestroItem
+        key={id}
+        restroId={id}
+        details={details}
+        highlightChosen={highlightChosen}
+      />
+    );
   }
 
   function renderRestroList() {

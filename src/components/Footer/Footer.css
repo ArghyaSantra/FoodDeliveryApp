@@ -1,4 +1,4 @@
-.footerParent {
+.footer {
   display: flex;
   height: 200px;
   align-items: center;
@@ -13,19 +13,6 @@
   text-align: left;
 }
 
-.socialMediaLinks {
-  justify-content: center;
-  display: flex;
-  flex: 1;
-}
-
-.socialMediaLink {
-  margin-right: 20px !important;
-}
-
-.footerParent {
-  margin-top: 100px;
-}
 .suppportContactNumber {
   display: flex;
   text-align: left;

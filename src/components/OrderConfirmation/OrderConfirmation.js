@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { addressSelector } from "../../Redux/selectors/addressSelector";
-import Cart from "../restroPage/restroDetailsLists/cart";
+import Cart from "../restroDishesPage/restroDetailsLists/cart";
 import "./orderConfirmation.css";
 
 const OrderConfirmation = ({ cartDetails }) => {

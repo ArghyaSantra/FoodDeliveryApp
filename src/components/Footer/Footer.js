@@ -1,25 +1,28 @@
-import React, { Component } from "react";
-
+import React from "react";
 import "./footer.css";
+import { supportEmail, supportPhoneNo } from "./footer.Helper";
 import SocialMediaLinks from "./socialMediaLinks";
 
 const Footer = () => {
-  return (
-    <div className="footerParent">
+  function renderPhoneAndEmailDetails() {
+    return (
       <div className="supportTeamInfo">
         <span className="suppportContactNumber">
           <i class="fi fi-rr-call-outgoing"></i>
-          <div className="supportDetails">+91 3323243234</div>
+          <div className="supportDetails">{supportPhoneNo}</div>
         </span>
         <br />
         <span className="suppportEmailAddress">
           <i class="fi fi-rr-envelope"></i>
-          <div className="supportDetails">supportteam@swiggy.com</div>
+          <div className="supportDetails">{supportEmail}</div>
         </span>
       </div>
-      <div className="socialMediaLinks">
-        <SocialMediaLinks />
-      </div>
+    );
+  }
+  return (
+    <div className="footer">
+      {renderPhoneAndEmailDetails()}
+      <SocialMediaLinks />
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import { createStore } from "redux";
-import { addressDetailsReducer } from "./addressDetailsReducer";
-import { checkoutRelatedReducer } from "./checkoutRelatedReducer";
-import { orderDetailsReducer } from "./orderDetailsReducer";
-import { selectRestroReducer } from "./selectRestroReducer";
+import { addressDetailsReducer } from "./reducers/addressDetailsReducer";
+import { checkoutRelatedReducer } from "./reducers/checkoutRelatedReducer";
+import { orderDetailsReducer } from "./reducers/orderDetailsReducer";
+import { selectRestroReducer } from "./reducers/selectRestroReducer";
 import { combineReducers, applyMiddleware } from "redux";
-import { highlightSelectReducer } from "./highlightSelectReducer";
-import { restroDishesReducer } from "./restroDishesReducer";
+import { highlightSelectReducer } from "./reducers/highlightSelectReducer";
+import { restroDishesReducer } from "./reducers/restroDishesReducer";
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({

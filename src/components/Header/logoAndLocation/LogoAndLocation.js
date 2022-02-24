@@ -1,19 +1,29 @@
 import React from "react";
 import "./logoAndLocation.css";
+import { logoImgSrc } from "./logoAndLocation.Helper";
+import { location } from "./logoAndLocation.Helper";
 
 const LogoAndLocation = () => {
-  return (
-    <div className="logoAndLocation">
+  function renderLogo() {
+    return (
       <div className="logo">
-        <img
-          className="logoImg"
-          src="https://res.cloudinary.com/swiggy/image/upload/portal/c/favicon-96x96.png"
-        />
+        <img className="logoImg" src={logoImgSrc} />
       </div>
+    );
+  }
+
+  function renderLocaion() {
+    return (
       <div className="location">
-        <h3>Bengaluru, Karnataka, India</h3>
+        <h3>{location}</h3>
         <i class="fi fi-rr-angle-down downIcon"></i>
       </div>
+    );
+  }
+  return (
+    <div className="logoAndLocation">
+      {renderLogo()}
+      {renderLocaion()}
     </div>
   );
 };

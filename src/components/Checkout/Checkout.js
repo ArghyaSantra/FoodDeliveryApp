@@ -1,6 +1,6 @@
 import React from "react";
 import DeliveryDetails from "./deliveryDetails";
-import Cart from "../restroPage/restroDetailsLists/cart";
+import Cart from "../restroDishesPage/restroDetailsLists/cart";
 
 import "./checkout.css";
 
@@ -9,7 +9,7 @@ const Checkout = () => {
     return <DeliveryDetails />;
   }
   function renderCart() {
-    return <Cart />;
+    return <Cart step="finalCheckout" />;
   }
   return (
     <div className="checkoutParent">

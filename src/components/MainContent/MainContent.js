@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Highlights from "./highlights";
 import RestroLists from "./restroLists";
 import "./mainContent.css";
@@ -6,17 +6,15 @@ import { getHighlightsList } from "./highlights/highlight/highights.Helper";
 import { getRestroList } from "./restroLists/restroLists.Helper";
 import { useDispatch, useSelector } from "react-redux";
 import { setHighlights, setRestros } from "../../Redux/actions";
+import { getHighlightListSelector } from "../../Redux/selectors/highlightRelatedSelectors";
+import { getRestrosSelector } from "../../Redux/selectors/restroRelatedSelectors";
 
 const MainContent = () => {
-  const highlightChosen = useSelector(
-    (state) => state.hightlightSelect.highlightChosen
-  );
-
-  const highlightsList = useSelector(
-    (state) => state.hightlightSelect.highlights
-  );
-
-  const restroList = useSelector((state) => state.selectRestro.restroList);
+  //From Local State of the component
+  const [highlightChosen, setHighlightChosen] = useState("Offers Near You");
+  //From Redux Store
+  const highlightsList = useSelector(getHighlightListSelector);
+  const restroList = useSelector(getRestrosSelector);
 
   const dispatch = useDispatch();
 
@@ -27,19 +25,27 @@ const MainContent = () => {
     });
   }, []);
 
-  useEffect(() => {
-    getRestroList(highlightChosen).then((values) => {
-      dispatch(setRestros(values));
-    });
-  }, [highlightChosen]);
+  const highlightClicked = (highlight) => {
+    setHighlightChosen(highlight);
+  };
+
+  function getRestroListBasedOnHighlight() {
+    return restroList[highlightChosen];
+  }
 
   return (
     <div className="mainContent">
       <div className="highLights">
-        <Highlights highlights={highlightsList} />
+        <Highlights
+          highlights={highlightsList}
+          onHighlightClicked={highlightClicked}
+        />
       </div>
       <div className="restroLists">
-        <RestroLists restroList={restroList} />
+        <RestroLists
+          restroList={getRestroListBasedOnHighlight()}
+          highlightChosen={highlightChosen}
+        />
       </div>
     </div>
   );

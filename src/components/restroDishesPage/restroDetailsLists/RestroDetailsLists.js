@@ -23,13 +23,8 @@ const RestroDetailsLists = (props) => {
     return _.map(restroDishes, renderRestroDetailsLists);
   }
 
-  function renderCartSection() {
-    return <Cart />; //checkoutClicked={checkoutClicked} />;
-  }
-
-  return (
-    <div className="restroDishesLists">
-      <div className="restroDishesListsLeft">Left-section</div>
+  function renderRestroListAndSearchBox() {
+    return (
       <div className="restroDishesListsMain">
         <div className="searchAndFilter">
           <div className="search">
@@ -51,7 +46,14 @@ const RestroDetailsLists = (props) => {
         </div>
         {renderCompleteRestroList()}
       </div>
-      <div className="restroDishesListsRight">{renderCartSection()}</div>
+    );
+  }
+
+  return (
+    <div className="restroDishesLists">
+      <div className="restroDishesListsLeft">Left-section</div>
+      {renderRestroListAndSearchBox()}
+      <div className="restroDishesListsRight">{<Cart step="checkout" />}</div>
     </div>
   );
 };

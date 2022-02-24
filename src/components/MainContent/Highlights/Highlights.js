@@ -4,9 +4,15 @@ import _ from "lodash";
 
 import "./highlights.css";
 
-const Highlights = ({ highlights }) => {
+const Highlights = ({ highlights, onHighlightClicked }) => {
   function renderHighlights({ id, details }) {
-    return <Highlight key={id} details={details} />;
+    return (
+      <Highlight
+        key={id}
+        details={details}
+        onHighlightClicked={onHighlightClicked}
+      />
+    );
   }
   return (
     <div className="highlightsInside">

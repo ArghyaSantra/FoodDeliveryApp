@@ -6,4 +6,9 @@
   padding: 0 70px;
   background-color: black;
   height: 340px;
+  color: white;
+}
+
+.fontWhite {
+  color: white;
 }
