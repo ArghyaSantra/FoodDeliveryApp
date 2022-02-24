@@ -5,9 +5,10 @@ import "./deliveryDetails.css";
 import { changeCurrentAddress } from "./deliveryDetails.Helper";
 import { useDispatch, useSelector } from "react-redux";
 import { changeAddressDetails } from "../../../Redux/actions";
+import { addressSelector } from "../../../Redux/selectors/addressSelector";
 
 const DeliveryDetails = () => {
-  const currentAddress = useSelector((state) => state.address.currentAddress);
+  const currentAddress = useSelector((state) => addressSelector(state)); //getAddress
   const dispatch = useDispatch();
 
   const eventHandler = (event) => {

@@ -14,6 +14,8 @@ function RestroDetailList({ id, details, dishClicked }) {
   );
   const dishAdd = () => {
     currentOrderDetails.push(details);
+    console.log("currentOrderDetails");
+    console.log(currentOrderDetails);
     dispatch(changeOrderDetails(currentOrderDetails));
   };
 

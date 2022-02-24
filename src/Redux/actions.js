@@ -7,6 +7,24 @@ export function selectRestro(restro) {
   };
 }
 
+const SET_HIGHLIGHTS = "SET_HIGHLIGHTS";
+
+export function setHighlights(listOfHighlights) {
+  return {
+    type: SET_HIGHLIGHTS,
+    payload: listOfHighlights,
+  };
+}
+
+const SET_RESTROS = "SET_RESTROS";
+
+export function setRestros(listOfRestros) {
+  return {
+    type: SET_RESTROS,
+    payload: listOfRestros,
+  };
+}
+
 const CHANGE_HIGHLIGHT = "CHANGE_HIGHLIGHT";
 
 export function changeHighlight(highlight) {
@@ -15,6 +33,7 @@ export function changeHighlight(highlight) {
     payload: highlight,
   };
 }
+
 const CHANGE_ORDER_DETAILS = "CHANGE_ORDER_DETAILS";
 
 export function changeOrderDetails(orderDetails) {
@@ -48,5 +67,23 @@ export function changeFinalCheckoutStatus() {
   return {
     type: CHANGE_FINAL_CHECKOUT_STATUS,
     payload: "",
+  };
+}
+
+const SET_RESTRO_DISHES = "SET_RESTRO_DISHES";
+
+export function setRestroDishes(restroDishes) {
+  return {
+    type: SET_RESTRO_DISHES,
+    payload: restroDishes,
+  };
+}
+
+const SEARCH_DISHES = "SEARCH_DISHES";
+
+export function searchDishes(searchTxt) {
+  return {
+    type: SEARCH_DISHES,
+    payload: searchTxt,
   };
 }

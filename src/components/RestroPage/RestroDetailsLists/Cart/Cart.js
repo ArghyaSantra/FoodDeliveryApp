@@ -2,37 +2,39 @@ import React from "react";
 import "./cart.css";
 import Button from "@material-ui/core/Button";
 import { filteredData } from "./cart.Helper";
-import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   changeCheckoutStatus,
   changeFinalCheckoutStatus,
 } from "../../../../Redux/actions";
+import { orderSelector } from "../../../../Redux/orderSelector";
+import CartCounterButton from "../../../cartCounterButton/CartCounterButton";
 
 function Cart({
-  //checkoutClicked,
-  //finalCheckoutClicked,
+  checkOut,
+  finalCheckOut,
+  currentOrderDetails,
   orderConfirmationPage,
 }) {
-  const currentOrder = useSelector((state) => state.orderDetails.orderDetails);
+  console.log("currentOrderDetails");
+  console.log(currentOrderDetails);
+  const currentOrder = currentOrderDetails; //useSelector((state) => state.orderDetails.orderDetails);
   let [finalCartDetails, total] = filteredData(currentOrder);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const dispatch = useDispatch();
-
   function checkoutClicked() {
-    dispatch(changeCheckoutStatus());
-    //setCheckoutClickFlag(true);
+    checkOut();
     navigate("/checkout");
   }
 
   function finalCheckoutClicked() {
-    dispatch(changeFinalCheckoutStatus());
-    //setFinalCheckoutClickFlag(true);
-    navigate("/orderConfirmation"); // need to modify this....
+    finalCheckOut();
+    navigate("/orderConfirmation");
   }
 
+  //Simplify this
   function chooseRightFunctionForCheckout() {
     const path = location.pathname;
     let fn;
@@ -46,7 +48,12 @@ function Cart({
 
   function renderItemList() {
     return finalCartDetails.map((dishes, id) => {
-      return <li key={id}>1 {dishes.name}</li>;
+      return (
+        <>
+          <li key={id}>1 {dishes.name}</li>
+          {/*<CartCounterButton qty={1} />*/}
+        </>
+      );
     });
   }
 
@@ -83,4 +90,16 @@ function Cart({
   );
 }
 
-export default Cart;
+const mapStateToProps = (state) => {
+  return {
+    currentOrderDetails: orderSelector(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    checkOut: () => dispatch(changeCheckoutStatus()),
+    finalCheckOut: () => dispatch(changeFinalCheckoutStatus()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

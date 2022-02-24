@@ -5,21 +5,26 @@ import Checkout from "../checkout";
 import OrderConfirmation from "../orderConfirmation";
 import { getRestroDishes } from "./restroPage.Helper";
 import "./restroPage.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { orderSelector } from "../../Redux/orderSelector";
+import { setRestroDishes } from "../../Redux/actions";
+import { dishesSelector } from "../../Redux/selectors/dishesSelector";
 
-let restroDishesFixed = [];
+let restroDishesFixed = []; //needs to be removed....
 
 const RestroPage = () => {
-  const [restroDishes, setRestroDishes] = useState([]);
-  const currentOrder = useSelector((state) => state.orderDetails.orderDetails);
+  const currentOrder = useSelector((state) => orderSelector(state)); //(state) => state.orderDetails.orderDetails
+
+  const listOfRestroDishes = useSelector((state) => dishesSelector(state));
 
   const checkoutDetails = useSelector((state) => state.checkout);
   const { checkoutClickedFlag, finalCheckoutClickedFlag } = checkoutDetails;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getRestroDishes().then((RestroDishesResponse) => {
       restroDishesFixed = RestroDishesResponse;
-      setRestroDishes(RestroDishesResponse);
+      dispatch(setRestroDishes(RestroDishesResponse));
     });
   }, []);
 
@@ -49,7 +54,7 @@ const RestroPage = () => {
   function renderRestroDetailsLists() {
     return (
       <RestroDetailsLists
-        restroDishes={restroDishes}
+        restroDishes={listOfRestroDishes}
         searchFunctionality={searchFunctionality}
         filterFunctionality={filterFunctionality}
       />
@@ -67,7 +72,7 @@ const RestroPage = () => {
   return (
     <div className="restroPageParent">
       {renderRestroPageBanner()}
-      {!checkoutClickedFlag && <>{renderRestroDetailsLists()}</>}
+      {!checkoutClickedFlag && renderRestroDetailsLists()}
       {checkoutClickedFlag && (
         <div className="restroPageCheckoutPage">
           {finalCheckoutClickedFlag
