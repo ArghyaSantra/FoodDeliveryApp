@@ -44,6 +44,6 @@ export const getHighlightsList = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(highlights);
-    }, 100);
+    }, 500);
   });
 };

@@ -1,4 +1,15 @@
-const SELECT_RESTRO = "SELECT_RESTRO";
+import {
+  SELECT_RESTRO,
+  SET_HIGHLIGHTS,
+  SET_RESTROS,
+  CHANGE_HIGHLIGHT,
+  CHANGE_ORDER_DETAILS,
+  CHANGE_ADDRESS_DETAILS,
+  CHANGE_CHECKOUT_STATUS,
+  CHANGE_FINAL_CHECKOUT_STATUS,
+  SET_RESTRO_DISHES,
+  SEARCH_DISHES,
+} from "./actionTypes";
 
 export function selectRestro(restro) {
   return {
@@ -7,16 +18,12 @@ export function selectRestro(restro) {
   };
 }
 
-const SET_HIGHLIGHTS = "SET_HIGHLIGHTS";
-
 export function setHighlights(listOfHighlights) {
   return {
     type: SET_HIGHLIGHTS,
     payload: listOfHighlights,
   };
 }
-
-const SET_RESTROS = "SET_RESTROS";
 
 export function setRestros(listOfRestros) {
   return {
@@ -25,16 +32,12 @@ export function setRestros(listOfRestros) {
   };
 }
 
-const CHANGE_HIGHLIGHT = "CHANGE_HIGHLIGHT";
-
 export function changeHighlight(highlight) {
   return {
     type: CHANGE_HIGHLIGHT,
     payload: highlight,
   };
 }
-
-const CHANGE_ORDER_DETAILS = "CHANGE_ORDER_DETAILS";
 
 export function changeOrderDetails(orderDetails) {
   return {
@@ -43,16 +46,12 @@ export function changeOrderDetails(orderDetails) {
   };
 }
 
-const CHANGE_ADDRESS_DETAILS = "CHANGE_ADDRESS_DETAILS";
-
 export function changeAddressDetails(addressDetails) {
   return {
     type: CHANGE_ADDRESS_DETAILS,
     payload: addressDetails,
   };
 }
-
-export const CHANGE_CHECKOUT_STATUS = "CHANGE_CHECKOUT_STATUS";
 
 export function changeCheckoutStatus() {
   return {
@@ -61,8 +60,6 @@ export function changeCheckoutStatus() {
   };
 }
 
-const CHANGE_FINAL_CHECKOUT_STATUS = "CHANGE_FINAL_CHECKOUT_STATUS";
-
 export function changeFinalCheckoutStatus() {
   return {
     type: CHANGE_FINAL_CHECKOUT_STATUS,
@@ -70,16 +67,12 @@ export function changeFinalCheckoutStatus() {
   };
 }
 
-const SET_RESTRO_DISHES = "SET_RESTRO_DISHES";
-
 export function setRestroDishes(restroDishes) {
   return {
     type: SET_RESTRO_DISHES,
     payload: restroDishes,
   };
 }
-
-const SEARCH_DISHES = "SEARCH_DISHES";
 
 export function searchDishes(searchTxt) {
   return {

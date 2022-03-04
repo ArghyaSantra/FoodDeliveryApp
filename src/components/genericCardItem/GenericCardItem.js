@@ -2,8 +2,8 @@ import React from "react";
 import "./genericCardItem.css";
 
 function GenericCardItem({ details, onClickEvent }) {
-  const { name, picId, tags, eta, ratings, price, offers } = details;
-  const eventHandler = (event) => onClickEvent(name);
+  const { id, name, picId, tags, eta, ratings, price, offers } = details;
+  const eventHandler = (event) => onClickEvent(details);
   return (
     <div className="itemParent" onClick={eventHandler}>
       <div className="itemDetails">

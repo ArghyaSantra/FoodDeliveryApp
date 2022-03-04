@@ -6,3 +6,7 @@ export const filteredData = (info) => {
   });
   return [finalCartDetails, total];
 };
+
+export function getTotalItemsQuantity(finalCartDetails) {
+  return finalCartDetails.length;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { SocialMediaIconsReact } from "social-media-icons-react";
 import { LINKS } from "./socialMediaLinks.Helper";
 import _ from "lodash";
+import "./socialMediaLinks.css";
 
 const renderSocialMediaLinks = (LINK) => {
   return (
@@ -22,7 +23,7 @@ const renderSocialMediaLinks = (LINK) => {
 
 const SocialMediaLinks = () => {
   return (
-    <div className="socialMediaLink">
+    <div className="socialMediaLinks">
       {_.map(LINKS, renderSocialMediaLinks)}
     </div>
   );

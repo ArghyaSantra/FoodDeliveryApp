@@ -1,4 +1,4 @@
-export const getRestroDishes = () => {
+export const getRestroDishes = (restroId) => {
   const restro_dishes = [
     {
       id: 1,

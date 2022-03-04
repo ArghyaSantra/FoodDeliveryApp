@@ -8,12 +8,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 
 const RestroDetailsLists = (props) => {
-  const {
-    restroDishes,
-    //checkoutClicked,
-    searchFunctionality,
-    filterFunctionality,
-  } = props;
+  const { restroDishes, searchFunctionality, filterFunctionality } = props;
 
   const renderRestroDetailsLists = ({ id, details }) => {
     return <RestroDetailList key={id} details={details} />;
@@ -23,13 +18,16 @@ const RestroDetailsLists = (props) => {
     return _.map(restroDishes, renderRestroDetailsLists);
   }
 
-  function renderCartSection() {
-    return <Cart />; //checkoutClicked={checkoutClicked} />;
+  function searchHandler(event) {
+    searchFunctionality(event.target.value);
   }
 
-  return (
-    <div className="restroDishesLists">
-      <div className="restroDishesListsLeft">Left-section</div>
+  function filterHandler(event) {
+    filterFunctionality(event.target.checked);
+  }
+
+  function renderRestroListAndSearchBox() {
+    return (
       <div className="restroDishesListsMain">
         <div className="searchAndFilter">
           <div className="search">
@@ -37,21 +35,26 @@ const RestroDetailsLists = (props) => {
               id="outlined-basic"
               label="Search..."
               variant="outlined"
-              onChange={(event) => searchFunctionality(event.target.value)}
+              onChange={searchHandler}
             />
           </div>
           <Checkbox
             color="primary"
             inputProps={{ "aria-label": "secondary checkbox" }}
-            onChange={(event) => {
-              filterFunctionality(event.target.checked);
-            }}
+            onChange={filterHandler}
           />
           Veg Only
         </div>
         {renderCompleteRestroList()}
       </div>
-      <div className="restroDishesListsRight">{renderCartSection()}</div>
+    );
+  }
+
+  return (
+    <div className="restroDishesLists">
+      <div className="restroDishesListsLeft">Left-section</div>
+      {renderRestroListAndSearchBox()}
+      <div className="restroDishesListsRight">{<Cart step="checkout" />}</div>
     </div>
   );
 };

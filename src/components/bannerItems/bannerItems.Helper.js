@@ -50,6 +50,6 @@ export const getBannerItems = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(banneritems);
-    }, 100);
+    }, 500);
   });
 };

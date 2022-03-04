@@ -8,7 +8,7 @@ import { changeAddressDetails } from "../../../Redux/actions";
 import { addressSelector } from "../../../Redux/selectors/addressSelector";
 
 const DeliveryDetails = () => {
-  const currentAddress = useSelector((state) => addressSelector(state)); //getAddress
+  const currentAddress = useSelector(addressSelector);
   const dispatch = useDispatch();
 
   const eventHandler = (event) => {

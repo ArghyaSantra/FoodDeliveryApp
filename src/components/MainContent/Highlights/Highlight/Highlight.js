@@ -1,20 +1,33 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import "./highlight.css";
-import { changeHighlight } from "../../../../Redux/actions";
 
-const Highlight = ({ details }) => {
+const Highlight = ({ details, onHighlightClicked }) => {
   const { title, iconClass, options } = details;
-  const dispatch = useDispatch();
-  return (
-    <div className="highlight" onClick={() => dispatch(changeHighlight(title))}>
+
+  function handleHighlightClick() {
+    onHighlightClicked(title);
+  }
+
+  function renderhighlightLogo() {
+    return (
       <span className="highlightLogo">
         <i class={iconClass}></i>
       </span>
+    );
+  }
+
+  function renderhighlightInfo() {
+    return (
       <span className="highlightInfo">
         <span>{title}</span>
         <span className="highlightInfoOptions">{options}</span>
       </span>
+    );
+  }
+  return (
+    <div className="highlight" onClick={handleHighlightClick}>
+      {renderhighlightLogo()}
+      {renderhighlightInfo()}
     </div>
   );
 };

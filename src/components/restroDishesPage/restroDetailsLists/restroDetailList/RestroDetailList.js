@@ -1,38 +1,45 @@
 import React from "react";
 import "./restroDetailList.css";
 import Button from "@material-ui/core/Button";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { changeOrderDetails } from "../../../../Redux/actions";
 
-function RestroDetailList({ id, details, dishClicked }) {
-  const navigate = useNavigate();
+function RestroDetailList({ details }) {
   const dispatch = useDispatch();
+  const { name, price, description, picId } = details;
 
   const currentOrderDetails = useSelector(
     (state) => state.orderDetails.orderDetails
   );
   const dishAdd = () => {
     currentOrderDetails.push(details);
-    console.log("currentOrderDetails");
-    console.log(currentOrderDetails);
     dispatch(changeOrderDetails(currentOrderDetails));
   };
 
-  return (
-    <div className="restroDetailList">
+  function renderRestroDishInfo() {
+    return (
       <div className="restroDetailListInfo">
-        <p>{details.name}</p>
-        <p>{details.price}</p>
-        <p>{details.description}</p>
+        <p>{name}</p>
+        <p>{price}</p>
+        <p>{description}</p>
       </div>
+    );
+  }
+
+  function renderRestroDishPicAndAddBtn() {
+    return (
       <div className="restroDetailListImage">
-        <img className="dishPic" src={details.picId} />
-        {/*<CartCounterButton itemCount={itemCount} />*/}
+        <img className="dishPic" src={picId} />
         <Button variant="contained" color="default" onClick={dishAdd}>
           Add
         </Button>
       </div>
+    );
+  }
+  return (
+    <div className="restroDetailList">
+      {renderRestroDishInfo()}
+      {renderRestroDishPicAndAddBtn()}
     </div>
   );
 }

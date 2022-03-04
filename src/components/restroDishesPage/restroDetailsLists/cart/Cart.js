@@ -1,28 +1,28 @@
 import React from "react";
 import "./cart.css";
 import Button from "@material-ui/core/Button";
-import { filteredData } from "./cart.Helper";
-import { connect } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { filteredData, getTotalItemsQuantity } from "./cart.Helper";
+import { connect, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   changeCheckoutStatus,
   changeFinalCheckoutStatus,
 } from "../../../../Redux/actions";
-import { orderSelector } from "../../../../Redux/orderSelector";
-import CartCounterButton from "../../../cartCounterButton/CartCounterButton";
+import { getCurrentOrderSelector } from "../../../../Redux/selectors/orderSelector";
+import { getChosenRestroSelector } from "../../../../Redux/selectors/restroRelatedSelectors";
 
 function Cart({
   checkOut,
   finalCheckOut,
   currentOrderDetails,
   orderConfirmationPage,
+  step,
 }) {
-  console.log("currentOrderDetails");
-  console.log(currentOrderDetails);
-  const currentOrder = currentOrderDetails; //useSelector((state) => state.orderDetails.orderDetails);
-  let [finalCartDetails, total] = filteredData(currentOrder);
-  const location = useLocation();
+  let [finalCartDetails, total] = filteredData(currentOrderDetails);
   const navigate = useNavigate();
+
+  const restroDetails = useSelector(getChosenRestroSelector);
+  const { name } = restroDetails;
 
   function checkoutClicked() {
     checkOut();
@@ -34,30 +34,21 @@ function Cart({
     navigate("/orderConfirmation");
   }
 
-  //Simplify this
-  function chooseRightFunctionForCheckout() {
-    const path = location.pathname;
-    let fn;
-    if (path.includes("restro")) {
-      fn = checkoutClicked;
+  function selectCheckoutFunction() {
+    if (step === "checkout") {
+      return checkoutClicked;
     } else {
-      fn = finalCheckoutClicked;
+      return finalCheckoutClicked;
     }
-    return fn;
   }
 
   function renderItemList() {
     return finalCartDetails.map((dishes, id) => {
-      return (
-        <>
-          <li key={id}>1 {dishes.name}</li>
-          {/*<CartCounterButton qty={1} />*/}
-        </>
-      );
+      return <li key={id}>1 {dishes.name}</li>;
     });
   }
 
-  function decideHeading() {
+  function getHeading() {
     return orderConfirmationPage ? "Order" : "Cart";
   }
 
@@ -67,18 +58,20 @@ function Cart({
         <Button
           variant="contained"
           color="primary"
-          onClick={chooseRightFunctionForCheckout()}
+          onClick={selectCheckoutFunction()}
         >
           Checkout
         </Button>
       )
     );
   }
+
+  const totalQuantity = getTotalItemsQuantity(finalCartDetails);
   return (
     <div className="cart">
-      <h1>{decideHeading()}</h1>
-      <p>from Kitchens of Punjab</p>
-      <p>{finalCartDetails.length} Item</p>
+      <h1>{getHeading()}</h1>
+      <p>from {name}</p>
+      <p>{totalQuantity} Item</p>
       <ul>{renderItemList()}</ul>
       <p className="Subtotal">
         Subtotal
@@ -92,7 +85,7 @@ function Cart({
 
 const mapStateToProps = (state) => {
   return {
-    currentOrderDetails: orderSelector(state),
+    currentOrderDetails: getCurrentOrderSelector(state),
   };
 };
 
@@ -102,4 +95,5 @@ const mapDispatchToProps = (dispatch) => {
     finalCheckOut: () => dispatch(changeFinalCheckoutStatus()),
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
