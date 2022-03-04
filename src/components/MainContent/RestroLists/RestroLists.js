@@ -1,28 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import RestroItem from "./restroItem";
 import _ from "lodash";
 import "./restroLists.css";
-import { useDispatch, useSelector } from "react-redux";
 import { getRestrosSelector } from "../../../Redux/selectors/restroRelatedSelectors";
 import { setRestros } from "../../../Redux/actions";
 import { getRestroList } from "./restroLists.Helper";
-import useLoader from "../../customHooks/useLoader";
 import useLoaderAndRedux from "../../customHooks/useLoaderAndRedux";
 
-const RestroLists = ({ /*restroList,*/ highlightChosen }) => {
-  /*const dispatch = useDispatch();
-  const restroList = useSelector(getRestrosSelector);
-
-  //useLoader(getRestroList,"redux",setRestros,getRestrosSelector);
-
-  useEffect(() => {
-    getRestroList().then((values) => {
-      dispatch(setRestros(values));
-    });
-  }, []);*/
-
-  //Use of Custom Hook
-
+const RestroLists = ({ highlightChosen }) => {
   const { data, isLoading } = useLoaderAndRedux(
     getRestroList,
     setRestros,

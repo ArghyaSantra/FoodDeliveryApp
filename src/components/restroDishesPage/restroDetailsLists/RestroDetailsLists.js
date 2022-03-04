@@ -8,12 +8,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 
 const RestroDetailsLists = (props) => {
-  const {
-    restroDishes,
-    //checkoutClicked,
-    searchFunctionality,
-    filterFunctionality,
-  } = props;
+  const { restroDishes, searchFunctionality, filterFunctionality } = props;
 
   const renderRestroDetailsLists = ({ id, details }) => {
     return <RestroDetailList key={id} details={details} />;
@@ -21,6 +16,14 @@ const RestroDetailsLists = (props) => {
 
   function renderCompleteRestroList() {
     return _.map(restroDishes, renderRestroDetailsLists);
+  }
+
+  function searchHandler(event) {
+    searchFunctionality(event.target.value);
+  }
+
+  function filterHandler(event) {
+    filterFunctionality(event.target.checked);
   }
 
   function renderRestroListAndSearchBox() {
@@ -32,15 +35,13 @@ const RestroDetailsLists = (props) => {
               id="outlined-basic"
               label="Search..."
               variant="outlined"
-              onChange={(event) => searchFunctionality(event.target.value)}
+              onChange={searchHandler}
             />
           </div>
           <Checkbox
             color="primary"
             inputProps={{ "aria-label": "secondary checkbox" }}
-            onChange={(event) => {
-              filterFunctionality(event.target.checked);
-            }}
+            onChange={filterHandler}
           />
           Veg Only
         </div>

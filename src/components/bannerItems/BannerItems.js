@@ -3,21 +3,18 @@ import BannerItem from "./bannerItem";
 import _ from "lodash";
 import "./bannerItems.css";
 import { getBannerItems } from "./bannerItems.Helper";
-import useLoader from "../customHooks/useLoader";
+import useLoader from "../customHooks/useLoaderModified";
 
 const BannerItems = () => {
-  /*const [bannerItems, setBannerItems] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const [bannerItems, setBannerItems] = useState();
+  const [isLoading, setIsLoading] = useLoader(true);
 
   useEffect(() => {
     getBannerItems().then((state) => {
-      storeBannerItems(state);
+      setBannerItems(state);
       setIsLoading(false);
     });
-  }, []);*/
-
-  const { data, isLoading } = useLoader(getBannerItems);
-  const bannerItems = data;
+  }, []);
 
   const renderBannerItems = ({ id, details }) => {
     return <BannerItem key={id} details={details} />;

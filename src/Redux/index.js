@@ -8,6 +8,8 @@ import { highlightSelectReducer } from "./reducers/highlightSelectReducer";
 import { restroDishesReducer } from "./reducers/restroDishesReducer";
 import thunk from "redux-thunk";
 
+import { composeWithDevTools } from "redux-devtools-extension";
+
 const rootReducer = combineReducers({
   address: addressDetailsReducer,
   checkout: checkoutRelatedReducer,
@@ -17,4 +19,7 @@ const rootReducer = combineReducers({
   restroDishes: restroDishesReducer,
 });
 
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+export const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);

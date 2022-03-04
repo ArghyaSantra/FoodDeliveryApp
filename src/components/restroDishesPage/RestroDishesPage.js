@@ -6,7 +6,7 @@ import OrderConfirmation from "../orderConfirmation";
 import { getRestroDishes } from "./restroPage.Helper";
 import "./restroDishesPage.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrentOrderSelector } from "../../Redux/selectors/orderSelector"; //vas
+import { getCurrentOrderSelector } from "../../Redux/selectors/orderSelector";
 import { setRestroDishes } from "../../Redux/actions";
 import { getRestroDishesSelector } from "../../Redux/selectors/dishesSelector";
 import { useParams } from "react-router-dom";
@@ -24,7 +24,6 @@ const RestroDishesPage = () => {
   const params = useParams();
   const { restroId } = params;
 
-  //Need to make a query param related HOC to pass id
   useEffect(() => {
     getRestroDishes(restroId).then((RestroDishesResponse) => {
       setDisplayedDishes(RestroDishesResponse);

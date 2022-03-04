@@ -8,8 +8,7 @@ import {
   changeCheckoutStatus,
   changeFinalCheckoutStatus,
 } from "../../../../Redux/actions";
-import { getCurrentOrderSelector } from "../../../../Redux/selectors/orderSelector"; //vas
-import QueryParamHOC from "../../../queryParamHOC/QueryParamHOC";
+import { getCurrentOrderSelector } from "../../../../Redux/selectors/orderSelector";
 import { getChosenRestroSelector } from "../../../../Redux/selectors/restroRelatedSelectors";
 
 function Cart({
@@ -97,8 +96,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const EnhancedCartWithURLParams = QueryParamHOC(Cart);
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EnhancedCartWithURLParams);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
